@@ -1,0 +1,22 @@
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: cravora-dev-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: cravora
+      POSTGRES_PASSWORD: cravora_dev_password
+      POSTGRES_DB: cravora
+    ports:
+      - "5435:5432"
+    volumes:
+      - cravora_dev_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cravora -d cravora"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  cravora_dev_postgres_data:

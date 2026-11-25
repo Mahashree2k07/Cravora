@@ -1,101 +1,272 @@
+
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      {/* HEADER */}
+      <header className="site-header">
+        <div className="container header-inner">
+          <a href="/" className="logo">
+            cravora<span>.</span>
+          </a>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <nav className="main-nav">
+            <a href="/">Home</a>
+            <a href="/dining">Dining</a>
+            <a href="/order">Order Online</a>
+            <a href="/my-activity">My Activity</a>
+            <a href="/about">Our Story</a>
+            <a href="/contact">Contact</a>
+          </nav>
+
+          <div className="header-actions">
+            <a href="/order" className="btn btn-primary">
+              Order Now
+            </a>
+          </div>
         </div>
+      </header>
+
+      <main>
+        {/* HERO SECTION */}
+        <section className="hero">
+          <div className="container hero-grid">
+            <div className="hero-content">
+              <span className="eyebrow">
+                A DIFFERENT KIND OF FOOD EXPERIENCE
+              </span>
+
+              <h1>
+                Good food.
+                <br />
+                Better living.
+              </h1>
+
+              <p>
+                More than a meal, it is a moment worth sharing.
+                Discover thoughtfully crafted food experiences
+                designed to bring people closer.
+              </p>
+
+              <div className="hero-actions">
+                <a href="/order" className="btn btn-primary">
+                  Explore Our Food
+                </a>
+
+                <a href="/dining" className="btn btn-secondary">
+                  Discover Dining
+                </a>
+              </div>
+            </div>
+
+            <div className="hero-image">
+              <Image
+                src="/images/hero/cravora-hero.jpg"
+                alt="A beautifully presented Indian food spread at Cravora"
+                className="hero-main-image"
+                width={1000}
+                height={1000}
+                priority
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* BRAND VALUES */}
+        <section className="brand-values">
+          <div className="container values-grid">
+            <div className="value-item">
+              <span>Fresh</span>
+              <p>Ingredients</p>
+            </div>
+
+            <div className="value-item">
+              <span>Made</span>
+              <p>With care</p>
+            </div>
+
+            <div className="value-item">
+              <span>Shared</span>
+              <p>With love</p>
+            </div>
+          </div>
+        </section>
+
+        {/* EXPERIENCE SECTION */}
+        <section className="section experience-section">
+          <div className="container experience-grid">
+            <div className="experience-image">
+              <Image
+                src="/images/hero/cravora-experience.jpg"
+                alt="An inviting restaurant dining experience"
+                className="experience-main-image"
+                width={1000}
+                height={1000}
+              />
+            </div>
+
+            <div className="experience-content">
+              <span className="eyebrow">
+                THE CRAVORA EXPERIENCE
+              </span>
+
+              <h2>Made to be enjoyed.</h2>
+
+              <span className="subheading">
+                Our philosophy
+              </span>
+
+              <h3>Food connects us.</h3>
+
+              <p>
+                Great food is not just about what is on the plate.
+                It is about everything around it.
+              </p>
+
+              <p>
+                From intimate dinners to everyday meals and special
+                celebrations, Cravora brings together the experiences
+                that make food unforgettable.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* DISCOVER OUR OFFERINGS */}
+        <section className="section offerings-section">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">
+                DISCOVER WHAT WE OFFER
+              </span>
+
+              <h2>Find your flavour.</h2>
+
+              <p>
+                However you choose to enjoy good food, there is
+                a Cravora experience waiting for you.
+              </p>
+            </div>
+
+            <div className="offerings-grid">
+              {/* DINING CARD */}
+              <article className="offering-card">
+                <div className="offering-image">
+                  <Image
+                    src="/images/hero/cravora-dining.jpg"
+                    alt="An elegant restaurant dining experience"
+                    width={900}
+                    height={600}
+                  />
+                </div>
+
+                <div className="offering-content">
+                  <div className="offering-topline">
+                    <span>THE RESTAURANT</span>
+                    <span>01</span>
+                  </div>
+
+                  <h3>Dine With Us</h3>
+
+                  <p>
+                    Slow down, settle in, and experience
+                    food worth remembering.
+                  </p>
+
+                  <a href="/dining" className="text-link">
+                    Discover dining →
+                  </a>
+                </div>
+              </article>
+
+              {/* ORDER ONLINE CARD */}
+              <article className="offering-card">
+                <div className="offering-image">
+                  <Image
+                    src="/images/hero/cravora-order-online.jpg"
+                    alt="A freshly prepared Indian meal ready to order"
+                    width={900}
+                    height={600}
+                  />
+                </div>
+
+                <div className="offering-content">
+                  <div className="offering-topline">
+                    <span>AT YOUR DOORSTEP</span>
+                    <span>02</span>
+                  </div>
+
+                  <h3>Order Online</h3>
+
+                  <p>
+                    Restaurant-quality favourites, delivered
+                    straight to your table.
+                  </p>
+
+                  <a href="/order" className="text-link">
+                    Explore the menu →
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* FINAL CALL TO ACTION */}
+        <section className="final-cta">
+          <div className="container final-cta-inner">
+            <div>
+              <span className="eyebrow">
+                YOUR NEXT FAVOURITE MOMENT STARTS HERE
+              </span>
+
+              <h2>
+                Come hungry.
+                <br />
+                Leave happy.
+              </h2>
+            </div>
+
+            <a href="/order" className="btn btn-primary">
+              Get Started
+            </a>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* FOOTER */}
+      <footer className="site-footer">
+        <div className="container footer-grid">
+          <div className="footer-brand">
+            <a href="/" className="logo">
+              cravora<span>.</span>
+            </a>
+
+            <p>
+              Good food. Better living. Creating experiences
+              that bring people together, one meal at a time.
+            </p>
+          </div>
+
+          <div className="footer-column">
+            <h4>Explore</h4>
+            <a href="/dining">Dining</a>
+            <a href="/order">Order Online</a>
+          </div>
+
+          <div className="footer-column">
+            <h4>Information</h4>
+            <a href="/about">Our Story</a>
+            <a href="/contact">Contact</a>
+          </div>
+        </div>
+
+        <div className="container footer-bottom">
+          <p>© 2026 Cravora. All rights reserved.</p>
+          <p>Good Food. Great Moments.</p>
+        </div>
       </footer>
-    </div>
+    </>
   );
 }

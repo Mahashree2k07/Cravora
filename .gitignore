@@ -26,7 +26,15 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.env
+.env.*
+!.env.example
+
+# local backups and copies
+/.next - Copy/
+/node_modules - Copy/
+postcss.config - Copy.mjs
+*.zip
 
 # vercel
 .vercel

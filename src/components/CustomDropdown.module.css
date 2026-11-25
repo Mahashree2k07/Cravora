@@ -1,0 +1,90 @@
+
+.dropdown {
+  position: relative;
+  width: 100%;
+  font-family: "Outfit", sans-serif;
+}
+
+.trigger {
+  width: 100%;
+  min-height: 43px;
+  padding: 11px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid #DCC9B3;
+  border-radius: 5px;
+  background: #F5F1E9;
+  color: #25271F;
+  font: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.trigger:hover,
+.trigger:focus-visible {
+  border-color: #A45B3C;
+  outline: none;
+}
+
+.placeholder {
+  color: #8D8379;
+}
+
+.arrow {
+  color: #A45B3C;
+  font-size: 17px;
+  transition: transform 0.2s ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 5px;
+  background: #FFFFFF;
+  border: 1px solid #DCC9B3;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(37, 39, 31, 0.12);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: 10px 11px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #25271F;
+  font-family: "Outfit", sans-serif;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.option:hover,
+.highlighted {
+  background: #E5E1DA;
+  color: #25271F;
+}
+
+.option[aria-selected="true"] {
+  font-weight: 600;
+}
+
+.option:focus-visible {
+  outline: 2px solid #A45B3C;
+  outline-offset: -2px;
+}

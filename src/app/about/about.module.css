@@ -1,0 +1,228 @@
+
+.storyPage {
+  background: #F5F1E9;
+  color: #25271F;
+  font-family: "Outfit", sans-serif;
+}
+
+.hero {
+  padding: 85px 7%;
+}
+
+.heroLayout,
+.introLayout,
+.experienceLayout {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 75px;
+}
+
+.heroContent h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(42px, 5vw, 66px);
+  line-height: 1.08;
+  margin: 20px 0;
+  max-width: 550px;
+}
+
+.heroContent > p:last-child,
+.introContent p,
+.experienceContent > p:not(.eyebrow) {
+  color: #766D63;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.eyebrow {
+  color: #A45B3C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.heroImage,
+.experienceImage {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.heroImage img,
+.experienceImage img {
+  object-fit: cover;
+}
+
+.intro {
+  padding: 90px 7%;
+  background: #EAE6DF;
+}
+
+.introLayout h2,
+.experienceContent h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1.15;
+  margin-top: 18px;
+}
+
+.introContent p {
+  margin-bottom: 18px;
+}
+
+.philosophy {
+  padding: 100px 7%;
+}
+
+.centerHeading {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 55px;
+}
+
+.centerHeading h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(35px, 4vw, 48px);
+  margin: 15px 0;
+}
+
+.centerHeading > p:last-child {
+  color: #766D63;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.philosophyGrid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.card {
+  background: #FFFFFF;
+  padding: 35px 30px;
+  border: 1px solid #DCC9B3;
+  min-height: 235px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(37, 39, 31, 0.08);
+}
+
+.number {
+  color: #A45B3C;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.card h3,
+.point h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 21px;
+  margin: 25px 0 12px;
+}
+
+.card p,
+.point p {
+  color: #766D63;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.experience {
+  padding: 90px 7%;
+  background: #EAE6DF;
+}
+
+.experienceContent > p:not(.eyebrow) {
+  margin: 20px 0 30px;
+}
+
+.point {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  padding: 18px 0;
+  border-bottom: 1px solid #DCC9B3;
+}
+
+.point > span {
+  color: #A45B3C;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  padding-top: 3px;
+}
+
+.point h3 {
+  margin: 0 0 6px;
+}
+
+.point p {
+  margin: 0;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+  .heroLayout,
+  .introLayout,
+  .experienceLayout {
+    gap: 40px;
+  }
+
+  .heroImage,
+  .experienceImage {
+    height: 350px;
+  }
+
+  .philosophyGrid {
+    gap: 15px;
+  }
+
+  .card {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero,
+  .intro,
+  .philosophy,
+  .experience {
+    padding: 60px 6%;
+  }
+
+  .heroLayout,
+  .introLayout,
+  .experienceLayout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .heroImage,
+  .experienceImage {
+    height: 300px;
+  }
+
+  .philosophyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: auto;
+  }
+
+  .experienceImage {
+    order: 1;
+  }
+}

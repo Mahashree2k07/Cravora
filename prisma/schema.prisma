@@ -1,0 +1,225 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -----------------------------------------
+// MENU MANAGEMENT
+// -----------------------------------------
+
+model Course {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique @db.VarChar(100)
+  menuItems MenuItem[]
+
+  @@map("courses")
+}
+
+model CuisineRegion {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique @db.VarChar(100)
+  menuItems MenuItem[]
+
+  @@map("cuisine_regions")
+}
+
+model MenuItem {
+  id              String   @id @default(uuid()) @db.Uuid
+  name            String   @db.VarChar(200)
+  description     String?  @db.Text
+  courseId        Int?     @map("course_id")
+  cuisineRegionId Int?     @map("cuisine_region_id")
+  spiceLevel      Int?     @map("spice_level")
+  retailPriceInr  Decimal? @map("retail_price_inr") @db.Decimal(10, 2)
+  retailPriceUsd  Decimal? @map("retail_price_usd") @db.Decimal(10, 2)
+  isSignature     Boolean  @default(false) @map("is_signature")
+  imageUrl        String?  @map("image_url") @db.Text
+
+  course        Course?        @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  cuisineRegion CuisineRegion? @relation(fields: [cuisineRegionId], references: [id], onDelete: SetNull)
+
+  moods     MenuItemMood[]
+  dietary   MenuItemDietary[]
+  allergens MenuItemAllergen[]
+  orderItems OrderItem[]
+
+  @@index([courseId])
+  @@index([cuisineRegionId])
+  @@map("menu_items")
+}
+
+model MoodTag {
+  id        Int            @id @default(autoincrement())
+  name      String         @unique @db.VarChar(100)
+  menuItems MenuItemMood[]
+
+  @@map("mood_tags")
+}
+
+model DietaryTag {
+  id        Int                @id @default(autoincrement())
+  name      String             @unique @db.VarChar(100)
+  menuItems MenuItemDietary[]
+
+  @@map("dietary_tags")
+}
+
+model Allergen {
+  id        Int                 @id @default(autoincrement())
+  name      String              @unique @db.VarChar(100)
+  menuItems MenuItemAllergen[]
+
+  @@map("allergens")
+}
+
+model MenuItemMood {
+  menuItemId String @map("menu_item_id") @db.Uuid
+  moodTagId  Int    @map("mood_tag_id")
+
+  menuItem MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+  moodTag  MoodTag  @relation(fields: [moodTagId], references: [id], onDelete: Cascade)
+
+  @@id([menuItemId, moodTagId])
+  @@map("menu_item_moods")
+}
+
+model MenuItemDietary {
+  menuItemId  String @map("menu_item_id") @db.Uuid
+  dietaryTagId Int   @map("dietary_tag_id")
+
+  menuItem  MenuItem  @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+  dietaryTag DietaryTag @relation(fields: [dietaryTagId], references: [id], onDelete: Cascade)
+
+  @@id([menuItemId, dietaryTagId])
+  @@map("menu_item_dietary")
+}
+
+model MenuItemAllergen {
+  menuItemId String @map("menu_item_id") @db.Uuid
+  allergenId Int    @map("allergen_id")
+
+  menuItem MenuItem @relation(fields: [menuItemId], references: [id], onDelete: Cascade)
+  allergen Allergen @relation(fields: [allergenId], references: [id], onDelete: Cascade)
+
+  @@id([menuItemId, allergenId])
+  @@map("menu_item_allergens")
+}
+
+// -----------------------------------------
+// CUSTOMER ORDERS
+// -----------------------------------------
+
+model Order {
+  id            String   @id @default(uuid()) @db.Uuid
+  orderNumber   String   @unique @map("order_number") @db.VarChar(50)
+  customerName  String   @map("customer_name") @db.VarChar(150)
+  customerPhone String   @map("customer_phone") @db.VarChar(20)
+  customerEmail String?  @map("customer_email") @db.VarChar(255)
+  pickupDate    DateTime @map("pickup_date") @db.Date
+  pickupTime    DateTime @map("pickup_time") @db.Time(0)
+  subtotal      Decimal  @db.Decimal(10, 2)
+  tax           Decimal  @default(0) @db.Decimal(10, 2)
+  total         Decimal  @db.Decimal(10, 2)
+  currency      String   @db.VarChar(3)
+  status        String   @default("pending") @db.VarChar(30)
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  items OrderItem[]
+
+  @@index([createdAt])
+  @@index([customerPhone])
+  @@map("orders")
+}
+
+model OrderItem {
+  id         BigInt  @id @default(autoincrement())
+  orderId    String  @map("order_id") @db.Uuid
+  menuItemId String? @map("menu_item_id") @db.Uuid
+  itemName   String  @map("item_name") @db.VarChar(200)
+  unitPrice  Decimal @map("unit_price") @db.Decimal(10, 2)
+  quantity   Int
+  lineTotal  Decimal @map("line_total") @db.Decimal(10, 2)
+
+  order    Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItem MenuItem? @relation(fields: [menuItemId], references: [id], onDelete: SetNull)
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+// -----------------------------------------
+// DINING RESERVATIONS
+// -----------------------------------------
+
+model DiningReservation {
+  id                String   @id @default(uuid()) @db.Uuid
+  bookingNumber     String   @unique @map("booking_number") @db.VarChar(50)
+  guestName         String   @map("guest_name") @db.VarChar(150)
+  phone             String   @db.VarChar(10)
+  email             String?  @db.VarChar(255)
+  reservationDate   DateTime @map("reservation_date") @db.Date
+  reservationTime   DateTime @map("reservation_time") @db.Time(0)
+  guests            Int
+  duration          String   @db.VarChar(50)
+  seatingPreference String   @map("seating_preference") @db.VarChar(50)
+  specialRequest    String?  @map("special_request") @db.Text
+  status            String   @default("pending") @db.VarChar(30)
+  createdAt         DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  @@index([reservationDate])
+  @@index([phone])
+  @@map("dining_reservations")
+}
+
+// -----------------------------------------
+// CONTACT ENQUIRIES
+// -----------------------------------------
+
+model ContactEnquiry {
+  id            String   @id @default(uuid()) @db.Uuid
+  enquiryNumber String   @unique @map("enquiry_number") @db.VarChar(50)
+  customerName  String   @map("customer_name") @db.VarChar(150)
+  email         String   @db.VarChar(255)
+  subject       String   @db.VarChar(50)
+  message       String   @db.Text
+  status        String   @default("new") @db.VarChar(30)
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+
+  @@index([email])
+  @@index([createdAt])
+  @@map("contact_enquiries")
+}
+
+// -----------------------------------------
+// EMAIL OTP AUTHENTICATION
+// -----------------------------------------
+
+model EmailOtpChallenge {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @db.VarChar(255)
+  otpHash   String   @map("otp_hash") @db.VarChar(64)
+  expiresAt DateTime @map("expires_at") @db.Timestamptz(6)
+  attempts  Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([email])
+  @@index([expiresAt])
+  @@map("email_otp_challenges")
+}
+
+model EmailOtpSession {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @db.VarChar(255)
+  tokenHash String   @unique @map("token_hash") @db.VarChar(64)
+  expiresAt DateTime @map("expires_at") @db.Timestamptz(6)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([email])
+  @@index([expiresAt])
+  @@map("email_otp_sessions")
+}

@@ -1,0 +1,278 @@
+
+.contactPage {
+  background: #F5F1E9;
+  color: #25271F;
+  font-family: "Outfit", sans-serif;
+}
+
+/* CONTACT INTRODUCTION */
+
+.contactHero {
+  padding: 55px 7% 45px;
+}
+
+.contactHero h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(36px, 4vw, 48px);
+  margin: 12px 0;
+}
+
+.contactHero > div > p:last-child {
+  color: #766D63;
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 580px;
+}
+
+.eyebrow {
+  color: #A45B3C;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+/* MAIN CONTACT LAYOUT */
+
+.contactMain {
+  padding: 20px 7% 75px;
+}
+.contactLayout {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 45px;
+  align-items: stretch;
+}
+
+/* LEFT INFORMATION CARDS */
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 17px;
+}
+
+.infoCard {
+  background: #EAE6DF;
+  border: 1px solid #DCC9B3;
+  padding: 24px;
+  border-radius: 10px;
+}
+
+.infoCard h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.infoCard h3 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 16px;
+  margin-bottom: 9px;
+}
+
+.infoCard p {
+  color: #766D63;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* RIGHT CONTACT FORM */
+
+.formColumn {
+  background: #FFFFFF;
+  border: 1px solid #DCC9B3;
+  padding: 32px;
+   border-radius: 10px;
+}
+
+.formHeading {
+  margin-bottom: 24px;
+}
+
+.formHeading h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 27px;
+  margin: 10px 0;
+}
+
+.formHeading > p:last-child {
+  color: #766D63;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 16px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.formGroup label {
+  color: #25271F;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.requiredStar {
+  color: #D62828;
+  margin-left: 4px;
+  font-weight: 700;
+}
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #DCC9B3;
+  border-radius: 3px;
+  background: #F5F1E9;
+  color: #25271F;
+  font-family: "Outfit", sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+/* DROPDOWN STYLING */
+
+.formGroup select {
+  cursor: pointer;
+  color-scheme: light;
+}
+
+.formGroup select option {
+  background: #F5F1E9;
+  color: #25271F;
+}
+
+.formGroup select option:hover,
+.formGroup select option:checked {
+  background: #E5E1DA;
+  color: #25271F;
+}
+
+.formGroup input,
+.formGroup select {
+  height: 43px;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 105px;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: #A45B3C;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #8D8379;
+}
+
+/* HIDDEN SPAM PROTECTION */
+
+.formWebsite {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* FORM BUTTON */
+
+.contactForm button {
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  min-width: 135px;
+  font-size: 13px;
+}
+
+.contactForm button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* FORM MESSAGES */
+
+.successMessage {
+  margin-top: 17px;
+  padding: 12px;
+  background: #E7EFE7;
+  color: #315B39;
+  border: 1px solid #B9D0B9;
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.errorMessage {
+  margin-top: 17px;
+  padding: 12px;
+  background: #F8E8E4;
+  color: #923E30;
+  border: 1px solid #E5BEB5;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+  .contactLayout {
+    gap: 25px;
+  }
+
+  .formColumn {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 700px) {
+  .contactHero {
+    padding: 45px 6% 35px;
+  }
+
+  .contactMain {
+    padding: 15px 6% 55px;
+  }
+
+  .contactLayout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .formColumn {
+    padding: 22px 18px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fullWidth {
+    grid-column: auto;
+  }
+
+  .infoCard {
+    padding: 21px;
+  }
+}

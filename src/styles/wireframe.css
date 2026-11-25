@@ -1,0 +1,8175 @@
+
+/* =========================================
+   CRAVORA - GLOBAL DESIGN SYSTEM
+   ========================================= */
+
+/* 1. BRAND COLOURS */
+
+:root {
+    --color-bg: #F5F1E9;
+    --color-bg-soft: #E5DED2;
+
+    --color-primary: #A45B3C;
+    --color-primary-dark: #80442F;
+    --color-secondary: #C58B68;
+
+    --color-green: #397653;
+
+    --color-text: #25271F;
+    --color-text-soft: #766D63;
+    --color-text-faint: #8D8379;
+
+    --color-border: #DCC9B3;
+    --color-white: #FFFFFF;
+
+    /* 2. TYPOGRAPHY */
+
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-body: "Outfit", sans-serif;
+
+    /* 3. LAYOUT */
+
+    --container-width: 1200px;
+    --header-height: 76px;
+
+    /* 4. SPACING */
+
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 40px;
+    --space-xl: 64px;
+
+    /* 5. BORDERS AND SHADOWS */
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+
+    --shadow-soft: 0 4px 20px rgba(37, 39, 31, 0.06);
+}
+
+
+/* =========================================
+   RESET AND BASE STYLES
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =========================================
+   TYPOGRAPHY
+   ========================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    color: var(--color-text);
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: clamp(36px, 5vw, 64px);
+}
+
+h2 {
+    font-size: clamp(28px, 4vw, 42px);
+}
+
+h3 {
+    font-size: 24px;
+}
+
+p {
+    color: var(--color-text-soft);
+}
+
+
+/* =========================================
+   REUSABLE LAYOUT
+   ========================================= */
+
+.container {
+    width: min(100% - 40px, var(--container-width));
+    margin-inline: auto;
+}
+
+.section {
+    padding: var(--space-xl) 0;
+}
+
+.section-heading {
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.section-heading p {
+    margin-top: var(--space-sm);
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text);
+    border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-bg-soft);
+}
+
+
+/* =========================================
+   CARDS
+   ========================================= */
+
+.card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.card-content {
+    padding: var(--space-md);
+}
+
+
+/* =========================================
+   FORMS
+   ========================================= */
+
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-white);
+    color: var(--color-text);
+    outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--color-primary);
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 64px;
+        --space-xl: 44px;
+    }
+
+    .container {
+        width: min(100% - 28px, var(--container-width));
+    }
+}
+
+
+/* =========================================
+   CRAVORA - ORIGINAL HOMEPAGE WIREFRAME
+   ========================================= */
+
+/* HEADER */
+
+.site-header {
+    min-height: var(--header-height);
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: var(--color-text);
+}
+
+.logo span {
+    color: var(--color-primary);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.main-nav a {
+    color: var(--color-text-soft);
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: var(--color-primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+
+/* GENERAL SECTION STYLES */
+
+.eyebrow {
+    display: block;
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+}
+
+.section-heading {
+    max-width: 720px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+}
+
+.section-heading p {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* HERO SECTION */
+
+.hero {
+    padding: 90px 0 100px;
+    background: var(--color-bg);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.hero-content h1 {
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 1.08;
+    letter-spacing: -3px;
+    margin-bottom: 25px;
+}
+
+.hero-content > p {
+    max-width: 490px;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.hero-image {
+    position: relative;
+}
+
+.image-placeholder {
+    background: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.image-placeholder small {
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.hero-main-image {
+    width: 100%;
+    height: 470px;
+    min-height: 470px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 48% 48% 8px 8px;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 25px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+    background: var(--color-bg-soft);
+}
+
+
+/* BRAND VALUES */
+
+.brand-values {
+    background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    padding: 35px 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.value-item {
+    padding: 10px;
+    border-right: 1px solid var(--color-border);
+}
+
+.value-item:last-child {
+    border-right: none;
+}
+
+.value-item span {
+    font-family: var(--font-heading);
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.value-item p {
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+
+/* CRAVORA EXPERIENCE */
+
+.experience-section {
+    padding: 110px 0;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1fr;
+    align-items: center;
+    gap: 90px;
+}
+
+.experience-main-image {
+    width: 100%;
+    height: 440px;
+    min-height: 440px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+}
+.experience-content h2 {
+    font-size: clamp(36px, 4vw, 50px);
+    margin-bottom: 35px;
+    letter-spacing: -1.5px;
+}
+
+.subheading {
+    display: block;
+    color: var(--color-primary);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.experience-content h3 {
+    font-size: 26px;
+    margin-bottom: 18px;
+}
+
+.experience-content p {
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 15px;
+    max-width: 500px;
+}
+
+
+/* OFFERINGS SECTION */
+
+.offerings-section {
+    background: var(--color-bg-soft);
+    padding: 100px 0;
+}
+
+.offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.offering-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+}
+
+.offering-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.offering-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+.offering-content {
+    padding: 28px;
+}
+
+.offering-topline {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+}
+
+.offering-topline span:last-child {
+    color: var(--color-text-faint);
+}
+
+.offering-content h3 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.offering-content p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+.text-link {
+    color: var(--color-primary);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.text-link:hover {
+    color: var(--color-primary-dark);
+}
+
+
+/* FINAL CALL TO ACTION */
+
+.final-cta {
+    padding: 85px 0;
+    background: var(--color-text);
+}
+
+.final-cta-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+}
+
+.final-cta h2 {
+    color: var(--color-bg);
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.15;
+}
+
+.final-cta .eyebrow {
+    color: var(--color-secondary);
+}
+
+.final-cta .btn-primary {
+    background: var(--color-primary);
+    white-space: nowrap;
+}
+
+
+/* FOOTER */
+
+.site-footer {
+    background: var(--color-bg-soft);
+    padding: 65px 0 25px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 65px;
+    padding-bottom: 55px;
+}
+
+.footer-brand p {
+    max-width: 340px;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 15px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+}
+
+.footer-column h4 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    font-size: 13px;
+    color: var(--color-text-soft);
+}
+
+.footer-column a:hover {
+    color: var(--color-primary);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-top: 22px;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-bottom p {
+    font-size: 12px;
+}
+
+
+/* TABLET RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .main-nav {
+        gap: 17px;
+    }
+
+    .hero-grid,
+    .experience-grid {
+        gap: 40px;
+    }
+
+    .experience-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-grid {
+        gap: 30px;
+    }
+
+}
+
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .header-inner {
+        gap: 15px;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+
+    .hero-grid,
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-grid {
+        gap: 40px;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-main-image {
+        min-height: 330px;
+    }
+
+    .experience-section,
+    .offerings-section {
+        padding: 65px 0;
+    }
+
+    .experience-main-image {
+    height: 320px;
+    min-height: 320px;
+}
+    .offerings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .offering-image {
+        min-height: 230px;
+    }
+
+    .final-cta-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+
+
+/* SMALL MOBILE */
+
+@media (max-width: 420px) {
+
+    .container {
+        width: calc(100% - 32px);
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .header-actions .btn {
+        padding: 11px 14px;
+        font-size: 12px;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .value-item {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .value-item:last-child {
+        border-bottom: none;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =================================
+   CRAVORA PREMIUM FOOTER
+================================= */
+
+.site-footer {
+    background: var(--color-bg-soft);
+    border-top: 1px solid var(--color-border);
+    padding: 65px 0 22px;
+    color: var(--color-text);
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    gap: 70px;
+    padding-bottom: 55px;
+}
+
+.footer-brand {
+    max-width: 370px;
+}
+
+.footer-brand .logo {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    margin-bottom: 24px;
+}
+
+.footer-brand h2 {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    max-width: 330px;
+    color: var(--color-text-soft);
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 100px;
+    padding-top: 12px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 130px;
+}
+
+.footer-column h3 {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    color: var(--color-text-faint);
+}
+
+.footer-column a,
+.footer-column p {
+    color: var(--color-text-soft);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-column a:hover {
+    color: var(--color-primary);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--color-border);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    color: var(--color-text-faint);
+    font-size: 12px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .site-footer {
+        padding: 45px 0 20px;
+    }
+
+    .footer-main {
+        flex-direction: column;
+        gap: 35px;
+        padding-bottom: 35px;
+    }
+
+    .footer-links {
+        gap: 45px;
+        flex-wrap: wrap;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* =================================
+   CRAVORA CONTACT PAGE LAYOUT
+================================= */
+
+.contact-main-section {
+    padding: 65px 0 85px;
+}
+
+.contact-page-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 75px;
+    align-items: start;
+}
+
+/* Left information column */
+
+.contact-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 8px;
+}
+
+.contact-info-card {
+    padding: 0 0 25px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.contact-info-card:last-child {
+    border-bottom: none;
+}
+
+.contact-info-card h2 {
+    font-family: var(--font-heading);
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.contact-info-card h3 {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 9px;
+}
+
+.contact-info-card p {
+    color: var(--color-text-soft);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+/* Right form column */
+
+.contact-form-column {
+    background: var(--color-white);
+    padding: 38px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+.contact-form-heading {
+    margin-bottom: 28px;
+}
+
+.contact-form-heading h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.contact-form-heading > p:last-child {
+    color: var(--color-text-soft);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 14px;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form .form-website {
+    display: none;
+}
+
+/* Mobile layout */
+
+@media (max-width: 800px) {
+    .contact-page-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contact-info-column {
+        gap: 22px;
+    }
+
+    .contact-form-column {
+        padding: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-main-section {
+        padding: 40px 0 55px;
+    }
+
+    .contact-form-column {
+        padding: 20px;
+    }
+
+    .contact-form-heading h2 {
+        font-size: 26px;
+    }
+}
+
+
+
+/* ========================================
+   CRAVORA MENU PAGE
+======================================== */
+
+.menu-page {
+    padding-bottom: 0;
+}
+
+/* Menu header */
+
+.menu-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.menu-header-inner {
+    min-height: var(--header-height);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-back-link {
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.menu-back-link:hover {
+    color: var(--color-primary);
+}
+
+.menu-header-title {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.menu-header-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}
+
+.currency-switcher {
+    display: flex;
+    padding: 4px;
+    gap: 3px;
+    background: var(--color-bg-soft);
+    border-radius: 30px;
+}
+
+.currency-btn {
+    border: 0;
+    border-radius: 24px;
+    padding: 8px 12px;
+    background: transparent;
+    color: var(--color-text-soft);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.currency-btn.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.cart-header-btn {
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Menu introduction */
+
+.menu-hero {
+    padding: 35px 0 25px;
+    text-align: center;
+}
+
+.menu-hero .eyebrow {
+    margin-bottom: 14px;
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.menu-hero h1 {
+    margin-bottom: 14px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1.15;
+}
+
+.menu-hero > .container > p:last-child {
+    color: var(--color-text-soft);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Search and filters */
+
+.menu-filter-section {
+    padding: 30px 0 35px;
+    background: var(--color-bg-soft);
+}
+
+.menu-search {
+    max-width: 720px;
+    margin: 0 auto 24px;
+}
+
+.menu-search input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 40px;
+    outline: none;
+    background: var(--color-white);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 14px;
+}
+
+.menu-search input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(164, 91, 60, 0.12);
+}
+
+.menu-dropdown-filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.menu-dropdown-filters select {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.menu-dropdown-filters select:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.dietary-filters {
+    margin-top: 26px;
+}
+
+.dietary-filters h3 {
+    margin-bottom: 13px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.dietary-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.dietary-chip {
+    padding: 9px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 30px;
+    background: var(--color-white);
+    color: var(--color-text-soft);
+    font-family: var(--font-body);
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.dietary-chip:hover,
+.dietary-chip.active {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.clear-filters {
+    margin-top: 17px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-primary-dark);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Menu results */
+
+.menu-items-section {
+    padding: 15px 0 100px;
+}
+
+.menu-results-heading {
+    margin-bottom: 8px;
+    color: var(--color-text-soft);
+    font-size: 14px;
+}
+
+.menu-course-section {
+    margin-bottom: 52px;
+}
+
+.menu-course-section h2 {
+    margin-bottom: 23px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 26px;
+}
+
+.menu-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* Dish cards */
+
+.menu-item-card {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-white);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(37, 39, 31, 0.10);
+}
+
+.menu-item-image {
+    height: 220px;
+    overflow: hidden;
+    background: var(--color-bg-soft);
+}
+
+.menu-item-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.menu-item-image.image-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text-faint);
+    font-size: 14px;
+}
+
+.menu-item-content {
+    padding: 21px;
+}
+
+.signature-badge {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #F3E5D9;
+    color: var(--color-primary-dark);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.menu-item-cuisine {
+    margin-bottom: 7px;
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.menu-item-content h3 {
+    margin-bottom: 9px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 19px;
+    line-height: 1.35;
+}
+
+.menu-item-description {
+    min-height: 63px;
+    margin-bottom: 15px;
+    color: var(--color-text-soft);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.menu-item-price {
+    margin-bottom: 14px;
+    color: var(--color-text);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.menu-item-dietary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.menu-item-dietary span {
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: var(--color-bg-soft);
+    color: var(--color-text-soft);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.menu-item-spice {
+    display: block;
+    margin-bottom: 17px;
+    color: var(--color-text-soft);
+    font-size: 12px;
+}
+
+.menu-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 38px;
+}
+
+.add-to-cart-btn,
+.menu-item-actions button {
+    min-width: 38px;
+    min-height: 38px;
+    padding: 8px 14px;
+    border: 1px solid var(--color-primary);
+    border-radius: 25px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.menu-item-actions button:hover {
+    background: var(--color-primary-dark);
+}
+
+.menu-item-actions span {
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.price-unavailable {
+    color: var(--color-text-faint) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
+
+/* Empty state */
+
+#menu-empty-state {
+    padding: 65px 20px;
+    text-align: center;
+}
+
+#menu-empty-state[hidden] {
+    display: none;
+}
+
+#menu-empty-state h2 {
+    margin-bottom: 10px;
+    font-family: var(--font-heading);
+    font-size: 25px;
+}
+
+#menu-empty-state p {
+    color: var(--color-text-soft);
+}
+
+/* Floating cart summary */
+
+.floating-cart-summary {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 90;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 17px max(24px, calc((100% - var(--container-width)) / 2));
+    background: var(--color-text);
+    color: var(--color-white);
+    box-shadow: 0 -5px 25px rgba(37, 39, 31, 0.15);
+}
+
+.floating-cart-summary[hidden] {
+    display: none;
+}
+
+.floating-cart-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.floating-cart-details strong {
+    font-size: 14px;
+}
+
+.floating-cart-details span {
+    color: #E5DED2;
+    font-size: 13px;
+}
+
+.floating-cart-summary > a {
+    padding: 11px 19px;
+    border-radius: 25px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Responsive menu layout */
+
+@media (max-width: 900px) {
+    .menu-items-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .menu-dropdown-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .menu-header-inner {
+        grid-template-columns: auto 1fr;
+        gap: 10px;
+    }
+
+    .menu-header-title {
+        display: none;
+    }
+
+    .menu-header-actions {
+        gap: 9px;
+    }
+
+    .currency-btn {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .cart-header-btn {
+        font-size: 12px;
+    }
+
+    .menu-hero {
+        padding: 45px 0 32px;
+    }
+
+    .menu-hero h1 {
+        font-size: 35px;
+    }
+
+    .menu-dropdown-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-items-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .menu-item-image {
+        height: 230px;
+    }
+
+    .menu-item-description {
+        min-height: auto;
+    }
+
+    .floating-cart-summary {
+        padding: 14px 18px;
+    }
+}
+
+
+
+/* ========================================
+   COMPACT MENU CARDS - FOUR PER ROW
+======================================== */
+
+.menu-items-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.menu-item-image {
+    height: 165px;
+}
+
+.menu-item-content {
+    padding: 16px;
+}
+
+.menu-item-content h3 {
+    font-size: 16px;
+    margin-bottom: 7px;
+}
+
+.menu-item-description {
+    min-height: 58px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 11px;
+}
+
+.menu-item-price {
+    font-size: 16px;
+    margin-bottom: 11px;
+}
+
+.menu-item-dietary {
+    gap: 5px;
+    margin-bottom: 9px;
+}
+
+.menu-item-dietary span {
+    font-size: 9px;
+    padding: 4px 7px;
+}
+
+.menu-item-spice {
+    font-size: 11px;
+    margin-bottom: 13px;
+}
+
+.menu-item-actions {
+    gap: 9px;
+}
+
+@media (max-width: 1100px) {
+    .menu-items-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
+    .menu-items-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .menu-items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-item-image {
+        height: 210px;
+    }
+}
+
+
+/* Sample dish ratings */
+
+.menu-item-rating {
+    margin-bottom: 9px;
+    color: #A45B3C;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+}
+
+
+
+
+/* Reduce only the content area below menu images */
+
+.menu-item-image {
+    height: 165px;
+}
+
+.menu-item-content {
+    padding: 10px 14px;
+}
+
+.menu-item-content h3 {
+    margin-bottom: 4px;
+    font-size: 15px;
+    line-height: 1.3;
+}
+
+.menu-item-rating {
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+
+.menu-item-description {
+    min-height: 0;
+    margin-bottom: 7px;
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+.menu-item-price {
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+.menu-item-dietary {
+    margin-bottom: 6px;
+}
+
+.menu-item-spice {
+    margin-bottom: 7px;
+}
+
+.menu-item-actions {
+    gap: 6px;
+}
+
+
+
+
+
+
+
+/* =========================================
+   CRAVORA - CLEAN PREMIUM MENU CARDS
+========================================= */
+
+.menu-item {
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.menu-item-image {
+    height: 165px;
+}
+
+/* Card content */
+.menu-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 12px 13px;
+}
+
+/* Hide cuisine label to simplify the card */
+.menu-item-cuisine {
+    display: none;
+}
+
+/* Dish name and price */
+.menu-item-content h3 {
+    margin: 0 0 7px;
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+.menu-item-price {
+    margin: 0 0 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Rating */
+.menu-item-rating {
+    margin: 0 0 8px;
+    font-size: 10px;
+    color: var(--color-primary);
+}
+
+/* Description */
+.menu-item-description {
+    min-height: 0;
+    margin: 0 0 9px;
+    font-size: 11px;
+    line-height: 1.45;
+    color: var(--color-text-soft);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Dietary labels */
+.menu-item-dietary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 0 0 8px;
+}
+
+.menu-item-dietary span {
+    font-size: 9px;
+    padding: 3px 7px;
+}
+
+/* Spice level */
+.menu-item-spice {
+    margin: 0 0 9px;
+    font-size: 10px;
+}
+
+/* Divider above action */
+.menu-item-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 8px;
+    margin-top: 0;
+}
+
+.menu-item-actions button {
+    min-height: 30px;
+    padding: 6px 12px;
+    font-size: 11px;
+    border-radius: 6px;
+}
+
+
+
+/* =====================================
+   CRAVORA - EDITORIAL FOOD CARD DESIGN
+===================================== */
+
+.menu-item-card {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+    background: #FFFFFF;
+    border: 1px solid #E8DED2;
+    border-radius: 12px;
+    box-shadow: 0 3px 14px rgba(37, 39, 31, 0.045);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(37, 39, 31, 0.09);
+}
+
+/* Image */
+.menu-item-card .menu-item-image {
+    height: 165px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-item-card .menu-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Signature badge */
+.menu-item-card .signature-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    padding: 5px 9px;
+    border-radius: 4px;
+    background: #F5F1E9;
+    color: #80442F;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+/* Content */
+.menu-item-card .menu-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 11px 12px;
+}
+
+/* Name and price */
+.menu-card-title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+
+.menu-card-title-row h3 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 600;
+    color: #25271F;
+}
+
+.menu-card-title-row .menu-item-price {
+    flex-shrink: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #80442F;
+}
+
+/* Rating */
+.menu-item-card .menu-item-rating {
+    margin: 0 0 7px;
+    color: #A45B3C;
+    font-size: 10px;
+}
+
+/* Description */
+.menu-item-card .menu-item-description {
+    min-height: 0;
+    margin: 0 0 9px;
+    color: #766D63;
+    font-size: 11px;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Dietary tags */
+.menu-item-card .menu-item-dietary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 0 0 9px;
+}
+
+.menu-item-card .menu-item-dietary span {
+    padding: 3px 7px;
+    border-radius: 4px;
+    background: #F5F1E9;
+    color: #397653;
+    font-size: 9px;
+}
+
+
+
+/* Add button */
+.menu-item-card .menu-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.menu-item-card .add-to-cart-btn {
+    min-height: 29px;
+    padding: 5px 12px;
+    border: 1px solid #A45B3C;
+    border-radius: 5px;
+    background: #A45B3C;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.menu-item-card .add-to-cart-btn:hover {
+    background: #80442F;
+}
+
+
+
+/* Rounded food image section */
+
+.menu-item-card .menu-item-image {
+    height: 165px;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.menu-item-card .menu-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+
+
+/* Premium inset food image */
+
+.menu-item-card {
+    padding: 7px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #FFFFFF;
+}
+
+.menu-item-card .menu-item-image {
+    height: 165px;
+    border-radius: 11px;
+    overflow: hidden;
+    position: relative;
+}
+
+.menu-item-card .menu-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 11px;
+    transition: transform 0.4s ease;
+}
+
+.menu-item-card:hover .menu-item-image img {
+    transform: scale(1.04);
+}
+
+.menu-item-card .menu-item-content {
+    padding: 11px 6px 5px;
+}
+
+
+/* =====================================
+   CRAVORA - MULTI-SELECT MENU FILTERS
+===================================== */
+
+.menu-dropdown-filters {
+    position: relative;
+    z-index: 5;
+}
+
+.multi-select-filter {
+    position: relative;
+    min-width: 0;
+}
+
+.multi-select-trigger {
+    width: 100%;
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.multi-select-trigger::after {
+    content: none;
+}
+.multi-select-trigger:hover,
+.multi-select-trigger[aria-expanded="true"] {
+    border-color: var(--color-primary);
+}
+
+.multi-select-panel {
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 0;
+    width: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 24px rgba(37, 39, 31, 0.12);
+    z-index: 20;
+}
+
+.multi-select-panel[hidden] {
+    display: none;
+}
+
+.multi-select-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    color: var(--color-text);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.multi-select-option:hover {
+    background: var(--color-bg);
+}
+
+.multi-select-option input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+}
+
+.multi-select-option span {
+    line-height: 1.4;
+}
+
+
+/* =====================================
+   CRAVORA - COMPACT MENU LAYOUT
+===================================== */
+
+/* Compact heading and search area */
+.menu-hero {
+    padding: 24px 0 18px;
+    text-align: left;
+}
+
+.menu-hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+    gap: 28px;
+}
+
+.menu-hero-content .eyebrow {
+    margin-bottom: 5px;
+    font-size: 10px;
+}
+
+.menu-hero-content h1 {
+    margin: 0 0 5px;
+    font-size: clamp(25px, 3vw, 34px);
+}
+
+.menu-hero-description {
+    margin: 0;
+    font-size: 13px;
+    color: var(--color-text-soft);
+}
+
+.menu-hero .menu-search {
+    width: 100%;
+    margin: 0;
+}
+
+.menu-hero .menu-search input {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 9px;
+    background: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 14px;
+}
+
+/* Compact filter section */
+.menu-filter-section {
+    padding: 10px 0 16px;
+}
+
+.menu-filter-toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu-dropdown-filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+/* Keep dietary options in one compact row */
+.dietary-filter-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dietary-filter-row h3 {
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.dietary-filter-row .dietary-options {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+    flex: 1;
+}
+
+.dietary-filter-row .clear-filters {
+    margin: 0;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .menu-hero-layout {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .menu-dropdown-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+    }
+}
+
+@media (max-width: 420px) {
+    .menu-dropdown-filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dietary-filter-row {
+        align-items: flex-start;
+    }
+}
+
+/* =================================
+   CRAVORA CART PAGE
+================================= */
+
+.cart-heading {
+    padding: 22px 0 12px;
+}
+
+.cart-heading .eyebrow {
+    margin-bottom: 8px;
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.cart-heading h1 {
+    margin: 0 0 8px;
+    font-family: var(--font-heading);
+    font-size: 36px;
+    color: var(--color-text);
+}
+
+.cart-heading p:last-child {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 14px;
+}
+
+.cart-section {
+    padding: 5px 0 80px;
+}
+
+.cart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: 28px;
+}
+
+.cart-items-area,
+.cart-summary {
+    padding: 22px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: #FFFFFF;
+}
+
+.cart-items-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.cart-items-header h2,
+.cart-summary h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 19px;
+    color: var(--color-text);
+}
+
+.cart-items-header span {
+    color: var(--color-text-soft);
+    font-size: 13px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 18px;
+    padding: 17px 0;
+}
+
+.cart-item-image {
+    width: 112px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: var(--color-bg-soft);
+}
+
+.cart-item-details h3 {
+    margin: 0 0 5px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 16px;
+}
+
+.cart-item-details p {
+    margin: 0 0 9px;
+    color: var(--color-text-soft);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.cart-item-details strong {
+    color: var(--color-primary);
+    font-size: 14px;
+}
+
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.cart-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+}
+
+.cart-quantity-controls button {
+    width: 23px;
+    height: 23px;
+    border: none;
+    background: transparent;
+    color: var(--color-text);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.cart-quantity-controls span {
+    min-width: 15px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cart-remove {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-primary);
+    font-family: var(--font-body);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.cart-remove:hover {
+    text-decoration: underline;
+}
+
+.cart-summary {
+    position: sticky;
+    top: 100px;
+}
+
+.cart-summary h2 {
+    margin-bottom: 22px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: var(--color-text-soft);
+    font-size: 14px;
+}
+
+.summary-row strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.summary-divider {
+    display: none;    
+}
+
+.summary-total {
+    color: var(--color-text);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.summary-total strong {
+    color: var(--color-primary);
+    font-size: 19px;
+}
+
+.cart-checkout-btn {
+    width: 100%;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.continue-shopping {
+    display: block;
+    margin-top: 17px;
+    color: var(--color-text-soft);
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.continue-shopping:hover {
+    color: var(--color-primary);
+}
+
+#empty-cart {
+    padding: 45px 15px;
+    text-align: center;
+}
+
+#empty-cart h2 {
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+    font-size: 21px;
+}
+
+#empty-cart p {
+    margin-bottom: 20px;
+    color: var(--color-text-soft);
+    font-size: 14px;
+}
+
+#empty-cart[hidden] {
+    display: none;
+}
+
+@media (max-width: 850px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-summary {
+        position: static;
+    }
+}
+
+@media (max-width: 560px) {
+    .cart-heading {
+        padding: 30px 0 18px;
+    }
+
+    .cart-heading h1 {
+        font-size: 29px;
+    }
+
+    .cart-items-area,
+    .cart-summary {
+        padding: 16px;
+    }
+
+    .cart-item {
+        grid-template-columns: 82px minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .cart-item-image {
+        width: 82px;
+        height: 82px;
+    }
+
+    .cart-item-actions {
+        grid-column: 2;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cart-item-details h3 {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================
+   CRAVORA - DINING & TABLE RESERVATIONS
+========================================= */
+
+/* DINING HERO */
+
+.dining-hero {
+    padding: 42px 0 48px;
+    background: var(--color-bg);
+}
+
+.dining-hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.dining-hero-content .eyebrow,
+.reservation-heading .eyebrow {
+    margin-bottom: 10px;
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.dining-hero-content h1 {
+    max-width: 520px;
+    margin: 0 0 16px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.12;
+}
+
+.dining-hero-content > p:not(.eyebrow) {
+    max-width: 460px;
+    margin: 0 0 25px;
+    color: var(--color-text-soft);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.dining-hero-image {
+    height: 390px;
+    overflow: hidden;
+    border-radius: 22px;
+}
+
+.dining-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* RESERVATION SECTION */
+
+.reservation-section {
+    padding: 45px 0 75px;
+    background: #F5F1E9;
+}
+
+.reservation-heading {
+    margin-bottom: 27px;
+}
+
+.reservation-heading h2 {
+    margin: 0 0 8px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 32px;
+}
+
+.reservation-heading > p:last-child {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 14px;
+}
+
+.reservation-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: 25px;
+}
+
+.reservation-form-card,
+.reservation-info-card,
+.reservation-hours-card {
+    padding: 25px;
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    background: #FFFFFF;
+    box-shadow: var(--shadow-soft);
+}
+
+
+/* FORM FIELDS */
+
+.reservation-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.reservation-field label {
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.reservation-field label span {
+    color: var(--color-text-faint);
+    font-weight: 400;
+}
+
+.reservation-field input,
+.reservation-field select,
+.reservation-field textarea {
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    outline: none;
+    background: #FFFFFF;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 13px;
+}
+
+.reservation-field textarea {
+    resize: vertical;
+}
+
+.reservation-field input:focus,
+.reservation-field select:focus,
+.reservation-field textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(164, 91, 60, 0.09);
+}
+
+.reservation-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+    row-gap: 0;
+    align-items: start;
+}
+
+.reservation-form-grid .reservation-field {
+    width: 100%;
+    min-width: 0;
+}
+/* DINING TIME SLOTS */
+
+.time-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.time-group h4 {
+    margin: 0 0 10px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 14px;
+}
+
+.time-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.time-slot {
+    min-width: 91px;
+    padding: 10px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.time-slot.selected {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: #FFFFFF;
+}
+
+/* RESERVATION INFORMATION */
+
+.reservation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.reservation-info-card h3,
+.reservation-hours-card h3 {
+    margin: 0 0 12px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 19px;
+}
+
+.reservation-info-card > p {
+    margin: 0 0 22px;
+    color: var(--color-text-soft);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.reservation-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin-top: 20px;
+}
+
+.info-icon {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: var(--color-bg-soft);
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.reservation-info-item strong {
+    color: var(--color-text);
+    font-size: 13px;
+}
+
+.reservation-info-item p {
+    margin: 5px 0 0;
+    color: var(--color-text-soft);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* DINING HOURS */
+
+.reservation-hours-card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 1px 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.reservation-hours-card > div span {
+    color: var(--color-text-soft);
+    font-size: 12px;
+}
+
+.reservation-hours-card > div strong {
+    color: var(--color-text);
+    font-size: 14px;
+}
+
+.reservation-hours-card > p {
+    margin: 1px 0 0;
+    color: var(--color-text-faint);
+    font-size: 0px;
+    line-height: 1.5;
+}
+
+
+/* BOOKING CONFIRMATION */
+
+.booking-confirmation {
+    padding: 45px 0 70px;
+    background: var(--color-bg);
+}
+
+.booking-confirmation[hidden] {
+    display: none;
+}
+
+.booking-confirmation-card {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 35px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: #FFFFFF;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+}
+
+.booking-success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 17px;
+    border-radius: 50%;
+    background: #E5F0E6;
+    color: #397653;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.booking-confirmation-card h2 {
+    margin: 0 0 10px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 25px;
+}
+
+.booking-confirmation-card > p {
+    color: var(--color-text-soft);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.booking-id {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 25px 0;
+    padding: 20px;
+    border: 1px dashed var(--color-primary);
+    border-radius: 10px;
+    background: var(--color-bg);
+}
+
+.booking-id span {
+    color: var(--color-text-soft);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.booking-id strong {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+
+.booking-details {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.booking-detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 13px;
+}
+
+.booking-detail-row span {
+    color: var(--color-text-soft);
+}
+
+.booking-detail-row strong {
+    max-width: 60%;
+    color: var(--color-text);
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.booking-instruction {
+    margin: 20px 0;
+    padding: 14px;
+    border-radius: 9px;
+    background: var(--color-bg);
+    color: var(--color-text-soft);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+    .dining-hero-layout {
+        gap: 30px;
+    }
+
+    .dining-hero-image {
+        height: 320px;
+    }
+
+    .reservation-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .dining-hero {
+        padding: 28px 0 35px;
+    }
+
+    .dining-hero-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .dining-hero-content h1 {
+        font-size: 39px;
+    }
+
+    .dining-hero-image {
+        height: 250px;
+    }
+
+    .reservation-section {
+        padding: 32px 0 50px;
+    }
+
+    .reservation-heading h2 {
+        font-size: 27px;
+    }
+
+    .reservation-form-card,
+    .reservation-info-card,
+    .reservation-hours-card {
+        padding: 18px;
+    }
+
+    .reservation-form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .reservation-info {
+        grid-template-columns: 1fr;
+    }
+
+    .time-slot {
+        min-width: 83px;
+        padding: 9px 10px;
+    }
+
+    .booking-confirmation-card {
+        padding: 22px 16px;
+    }
+
+    .booking-confirmation-card h2 {
+        font-size: 21px;
+    }
+
+    .booking-id strong {
+        font-size: 22px;
+    }
+}
+
+
+/* PRINT BOOKING DETAILS */
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .booking-confirmation,
+    .booking-confirmation * {
+        visibility: visible;
+    }
+
+    .booking-confirmation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .booking-confirmation-card {
+        border: none;
+        box-shadow: none;
+    }
+
+    .booking-confirmation-card button {
+        display: none;
+    }
+}
+
+
+/* CRAVORA - COMPACT DINING HERO */
+
+.dining-hero {
+    padding: 20px 0 25px;
+}
+
+.dining-hero-layout {
+    grid-template-columns: 1fr 0.9fr;
+    gap: 35px;
+}
+
+.dining-hero-content h1 {
+    font-size: clamp(32px, 4vw, 45px);
+    margin-bottom: 10px;
+}
+
+.dining-hero-content > p:not(.eyebrow) {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 17px;
+}
+
+.dining-hero-image {
+    height: 250px;
+    border-radius: 16px;
+}
+
+@media (max-width: 650px) {
+    .dining-hero {
+        padding: 20px 0;
+    }
+
+    .dining-hero-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .dining-hero-content h1 {
+        font-size: 34px;
+    }
+
+    .dining-hero-image {
+        height: 190px;
+    }
+}
+
+
+/* =========================================
+   CRAVORA - OUR STORY PAGE
+========================================= */
+
+/* INTRODUCTION */
+
+.story-hero {
+    padding: 38px 0;
+    background: var(--color-bg);
+}
+
+.story-hero-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+    gap: 45px;
+}
+
+.story-hero-content .eyebrow,
+.story-section-label .eyebrow,
+.story-centered-heading .eyebrow,
+.story-experience-content .eyebrow,
+.story-cta-section .eyebrow {
+    margin-bottom: 12px;
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.story-hero-content h1 {
+    max-width: 480px;
+    margin: 0 0 16px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 4.5vw, 52px);
+    line-height: 1.13;
+}
+
+.story-hero-content > p:last-child {
+    max-width: 450px;
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.story-hero-image {
+    height: 310px;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.story-hero-image img,
+.story-experience-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* THE IDEA BEHIND CRAVORA */
+
+.story-intro-section {
+    padding: 55px 0;
+    background: #FFFFFF;
+}
+
+.story-intro-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 55px;
+}
+
+.story-section-label h2,
+.story-experience-content h2 {
+    max-width: 400px;
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 32px;
+    line-height: 1.25;
+}
+
+.story-intro-content p {
+    margin: 0 0 16px;
+    color: var(--color-text-soft);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.story-intro-content p:first-child {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+
+/* OUR FOOD PHILOSOPHY */
+
+.story-philosophy-section {
+    padding: 55px 0 60px;
+    background: var(--color-bg);
+}
+
+.story-centered-heading {
+    max-width: 600px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+
+.story-centered-heading h2 {
+    margin: 0 0 10px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 32px;
+}
+
+.story-centered-heading > p:last-child {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.story-philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.story-philosophy-card {
+    padding: 23px;
+    border: 1px solid var(--color-border);
+    border-radius: 13px;
+    background: #FFFFFF;
+}
+
+.story-card-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 37px;
+    margin-bottom: 18px;
+    border-radius: 9px;
+    background: var(--color-bg-soft);
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.story-philosophy-card h3 {
+    margin: 0 0 9px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 17px;
+}
+
+.story-philosophy-card p {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* THE CRAVORA EXPERIENCE */
+
+.story-experience-section {
+    padding: 60px 0;
+    background: #FFFFFF;
+}
+
+.story-experience-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.story-experience-image {
+    height: 360px;
+    overflow: hidden;
+    border-radius: 17px;
+}
+
+.story-experience-content > p:not(.eyebrow) {
+    margin: 12px 0 23px;
+    color: var(--color-text-soft);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.story-experience-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.story-experience-point > span {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.story-experience-point h3 {
+    margin: 0 0 5px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 15px;
+}
+
+.story-experience-point p {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* FINAL CALL TO ACTION */
+
+.story-cta-section {
+    padding: 45px 20px;
+    background: var(--color-bg-soft);
+    text-align: center;
+}
+
+.story-cta-section h2 {
+    margin: 0 0 10px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 31px;
+}
+
+.story-cta-section > .container > p:not(.eyebrow) {
+    margin: 0 0 22px;
+    color: var(--color-text-soft);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* RESPONSIVE LAYOUT */
+
+@media (max-width: 800px) {
+    .story-hero-layout,
+    .story-intro-layout,
+    .story-experience-layout {
+        gap: 28px;
+    }
+
+    .story-hero-image {
+        height: 260px;
+    }
+
+    .story-philosophy-card {
+        padding: 18px;
+    }
+
+    .story-experience-image {
+        height: 300px;
+    }
+}
+
+@media (max-width: 650px) {
+    .story-hero {
+        padding: 28px 0;
+    }
+
+    .story-hero-layout,
+    .story-intro-layout,
+    .story-experience-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .story-hero-content h1 {
+        font-size: 37px;
+    }
+
+    .story-hero-image {
+        height: 220px;
+    }
+
+    .story-intro-section,
+    .story-experience-section {
+        padding: 38px 0;
+    }
+
+    .story-section-label h2,
+    .story-experience-content h2 {
+        font-size: 27px;
+    }
+
+    .story-philosophy-section {
+        padding: 40px 0;
+    }
+
+    .story-centered-heading h2 {
+        font-size: 27px;
+    }
+
+    .story-philosophy-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .story-philosophy-card {
+        padding: 19px;
+    }
+
+    .story-experience-image {
+        height: 230px;
+    }
+
+    .story-cta-section {
+        padding: 38px 15px;
+    }
+
+    .story-cta-section h2 {
+        font-size: 26px;
+    }
+}
+
+
+/* =========================================
+   CRAVORA - CONTACT PAGE REFINEMENT
+========================================= */
+
+/* CONTACT INTRODUCTION */
+
+.contact-hero {
+    padding: 32px 0 25px;
+    background: var(--color-bg);
+}
+
+.contact-hero .eyebrow {
+    margin-bottom: 8px;
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.contact-hero h1 {
+    margin: 0 0 10px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 42px;
+}
+
+.contact-hero .container > p:last-child {
+    max-width: 570px;
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* MAIN CONTACT LAYOUT */
+
+.contact-main-section {
+    padding: 15px 0 65px;
+    background: var(--color-bg);
+}
+
+.contact-page-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+    gap: 25px;
+}
+
+.contact-info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+
+/* INFORMATION CARDS */
+
+.contact-info-card {
+    padding: 21px 23px;
+    border: 1px solid var(--color-border);
+    border-radius: 13px;
+    background: #FFFFFF;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.contact-info-card h2 {
+    margin: 0 0 9px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 18px;
+}
+
+.contact-info-card h3 {
+    margin: 0 0 9px;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.contact-info-card p {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+
+/* CONTACT FORM CARD */
+
+.contact-form-column {
+    padding: 27px;
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    background: #FFFFFF;
+    box-shadow: var(--shadow-soft);
+}
+
+.contact-form-heading {
+    margin-bottom: 23px;
+}
+
+.contact-form-heading .eyebrow {
+    margin: 0 0 7px;
+    color: var(--color-primary);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.contact-form-heading h2 {
+    margin: 0 0 7px;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 25px;
+}
+
+.contact-form-heading > p:last-child {
+    margin: 0;
+    color: var(--color-text-soft);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* FORM FIELDS */
+
+.contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 17px;
+}
+
+.contact-form .form-group label {
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.contact-form .form-group input,
+.contact-form .form-group select,
+.contact-form .form-group textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 11px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    outline: none;
+    background: #FFFFFF;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contact-form .form-group input:focus,
+.contact-form .form-group select:focus,
+.contact-form .form-group textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(164, 91, 60, 0.09);
+}
+
+.contact-form .form-group input::placeholder,
+.contact-form .form-group textarea::placeholder {
+    color: var(--color-text-faint);
+}
+
+.contact-form > button {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+/* Keep the honeypot field out of sight */
+.contact-form .form-website {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 800px) {
+    .contact-page-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .contact-info-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-info-card:last-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 550px) {
+    .contact-hero {
+        padding: 25px 0 20px;
+    }
+
+    .contact-hero h1 {
+        font-size: 34px;
+    }
+
+    .contact-main-section {
+        padding: 10px 0 45px;
+    }
+
+    .contact-info-column {
+        display: flex;
+    }
+
+    .contact-info-card {
+        padding: 18px;
+    }
+
+    .contact-form-column {
+        padding: 20px 17px;
+    }
+
+    .contact-form-heading h2 {
+        font-size: 22px;
+    }
+}
+
+
+/* =========================================
+   CRAVORA - COMPACT DINING RESERVATION FORM
+========================================= */
+
+.reservation-section {
+    padding: 25px 0 45px;
+}
+
+.reservation-heading {
+    margin-bottom: 17px;
+}
+
+.reservation-heading h2 {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.reservation-form-card {
+    padding: 19px;
+}
+
+/* Compact form spacing */
+
+.reservation-field {
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+.reservation-field label {
+    font-size: 12px;
+}
+
+.reservation-field input,
+.reservation-field select,
+.reservation-field textarea {
+    min-height: 39px;
+    padding: 8px 11px;
+    font-size: 12px;
+}
+
+/* Two-column field arrangement */
+
+.reservation-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 13px;
+}
+
+/* Compact time selection */
+
+.time-slots {
+    gap: 12px;
+}
+
+.time-group h4 {
+    margin-bottom: 7px;
+    font-size: 13px;
+}
+
+.time-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.time-slot {
+    min-width: 0;
+    padding: 8px 5px;
+    font-size: 11px;
+}
+
+/* Smaller special request area */
+
+.reservation-field textarea {
+    min-height: 65px;
+}
+
+
+/* Compact information cards */
+
+.reservation-info {
+    gap: 12px;
+}
+
+.reservation-info-card,
+.reservation-hours-card {
+    padding: 18px;
+}
+
+.reservation-info-item {
+    margin-top: 13px;
+}
+
+/* Mobile layout */
+
+@media (max-width: 650px) {
+    .reservation-section {
+        padding: 20px 0 35px;
+    }
+
+    .reservation-form-card {
+        padding: 15px;
+    }
+
+    .reservation-form-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0 9px;
+    }
+
+    .time-options {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .reservation-field {
+        margin-bottom: 11px;
+    }
+}
+
+@media (max-width: 380px) {
+    .reservation-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* DINING - SMALLER AND NEATER INPUT FIELDS */
+
+.reservation-field {
+    gap: 5px;
+    margin-bottom: 11px;
+}
+
+.reservation-field label {
+    font-size: 12px;
+}
+
+.reservation-field input,
+.reservation-field select {
+    min-height: 35px;
+    height: 35px;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 7px;
+}
+
+.reservation-field textarea {
+    min-height: 60px;
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 7px;
+}
+
+.reservation-form-card {
+    padding: 17px 19px;
+}
+
+.reservation-form-grid {
+    gap: 0 12px;
+}
+
+.time-slot {
+    min-height: 32px;
+    padding: 6px 8px;
+    font-size: 11px;
+}
+
+/* DINING FORM - PROPORTIONATE INPUT WIDTHS */
+
+.reservation-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 16px;
+}
+
+.reservation-field {
+    width: 100%;
+}
+
+.reservation-field input,
+.reservation-field select {
+    width: 100%;
+    height: 38px;
+    min-height: 38px;
+    padding: 7px 10px;
+    font-size: 13px;
+    border-radius: 7px;
+}
+
+/* Name and email fields */
+.reservation-field input[name="name"],
+.reservation-field input[name="email"] {
+    max-width: 100%;
+}
+
+/* Mobile number */
+.reservation-field input[name="mobile"] {
+    max-width: 220px;
+}
+
+/* Special requests */
+.reservation-field textarea {
+    width: 100%;
+    min-height: 65px;
+    padding: 9px 10px;
+    font-size: 13px;
+}
+
+/* Labels */
+.reservation-field label {
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 600px) {
+    .reservation-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-field input[name="mobile"] {
+        max-width: 100%;
+    }
+}
+
+/* DINING FORM FIELD ARRANGEMENT */
+
+#reservation-form .reservation-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+    align-items: start;
+}
+
+#reservation-form .reservation-form-grid.three-columns {
+    grid-template-columns: 1.2fr 1fr 0.85fr;
+}
+
+#reservation-form .reservation-field {
+    min-width: 0;
+}
+
+#reservation-form input,
+#reservation-form select {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 650px) {
+    #reservation-form .reservation-form-grid,
+    #reservation-form .reservation-form-grid.three-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    #reservation-form .reservation-form-grid,
+    #reservation-form .reservation-form-grid.three-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* CRAVORA - UNIFORM MENU CARD ALIGNMENT */
+
+.menu-item-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.menu-item-card .menu-item-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 11px 13px 12px;
+}
+
+/* Dish name and price */
+.menu-card-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    min-height: 48px;
+}
+
+.menu-card-title-row h3 {
+    flex: 1;
+    min-height: 0;
+    margin: 0;
+}
+
+/* Rating */
+.menu-item-rating {
+    min-height: 20px;
+    margin: 5px 0;
+}
+
+/* Description */
+.menu-item-description {
+    height: 40px;
+    min-height: 40px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    margin-bottom: 8px;
+}
+
+/* Dietary tags */
+.menu-item-dietary {
+    min-height: 27px;
+    max-height: 27px;
+    overflow: hidden;
+}
+
+/* Add and quantity buttons */
+.menu-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.menu-item-actions button {
+    min-width: 34px;
+    height: 32px;
+}
+
+.menu-item-actions .add-to-cart-btn {
+    min-width: 85px;
+    padding: 6px 13px;
+}
+.menu-card-bottom-row {
+    border-top: none;
+    padding-top: 10px;
+}
+
+/* Remove unwanted line or shadow around Add button */
+.menu-item-actions .add-to-cart-btn {
+    border: 1px solid var(--color-primary);
+    box-shadow: none;
+    outline: none;
+    text-decoration: none;
+    background-image: none;
+}
+
+.menu-item-actions .add-to-cart-btn::before,
+.menu-item-actions .add-to-cart-btn::after {
+    display: none;
+    content: none;
+}
+
+/* Uniform menu card bottom section */
+.menu-card-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 10px;
+    border: none !important;
+    box-shadow: none;
+}
+
+/* CONSISTENT HEADER ALIGNMENT ACROSS PAGES */
+
+.site-header .header-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+.site-header .logo {
+    justify-self: start;
+}
+
+.site-header .main-nav {
+    justify-self: center;
+}
+
+.site-header .header-actions {
+    justify-self: end;
+}
+
+/* CONSISTENT HEADER BUTTON SIZE */
+.site-header .header-actions .btn {
+    min-height: 42px;
+    height: 42px;
+    padding: 10px 20px;
+    font-size: 13px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* ACTIVE NAVIGATION LINK */
+.main-nav a.active {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--color-primary);
+}
+
+
+/* CRAVORA CONTACT FORM GRID */
+.contact-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 16px;
+}
+
+.contact-form-grid .form-group {
+    min-width: 0;
+    margin-bottom: 0;
+}
+
+.contact-form-grid .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.contact-form-grid input,
+.contact-form-grid select {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+.contact-form-grid textarea {
+    width: 100%;
+    min-height: 85px;
+    box-sizing: border-box;
+}
+
+.contact-form > .btn {
+    margin-top: 16px;
+}
+
+
+
+/* Keep Special Requests on a separate full-width row */
+.reservation-field.full-width {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+/* FIX SPECIAL REQUESTS POSITION */
+.reservation-field.full-width {
+    grid-column: 1 / -1 !important;
+    display: block;
+    width: 100%;
+    clear: both;
+}
+
+.reservation-field.full-width textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* CRAVORA - CONFIRM RESERVATION BUTTON */
+.reservation-submit {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content !important;
+    min-width: 190px;
+    min-height: 42px;
+
+    padding: 10px 22px;
+    margin: 15px 0 0 auto;
+
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 30px;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.reservation-submit:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-1px);
+}
+
+/* Mobile layout */
+@media (max-width: 520px) {
+    .reservation-submit {
+        width: 100% !important;
+    }
+}
+
+
+/* ALIGN RESERVATION FORM AND INFORMATION CARDS */
+.reservation-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.8fr);
+    align-items: start !important;
+    gap: 24px;
+}
+
+.reservation-form-card,
+.reservation-info {
+    align-self: start !important;
+    margin-top: 0 !important;
+}
+
+.reservation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .reservation-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* PREVENT LOGO MOVEMENT DURING PAGE LOAD */
+
+.site-header .logo {
+    display: inline-flex !important;
+    align-items: baseline;
+    white-space: nowrap;
+    min-width: 125px;
+    min-height: 30px;
+    font-family: "Space Grotesk", sans-serif !important;
+    font-size: 30px !important;
+    font-weight: 700 !important;
+    letter-spacing: -1.5px !important;
+    line-height: 1 !important;
+}
+
+/* CRAVORA - REFINED CONTACT FORM */
+
+.contact-form {
+    width: 100%;
+    padding: 22px;
+    box-sizing: border-box;
+}
+
+.contact-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 15px;
+}
+
+.contact-form-grid .form-group {
+    margin: 0;
+    min-width: 0;
+}
+
+.contact-form-grid .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.contact-form-grid label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.contact-form-grid input,
+.contact-form-grid select {
+    width: 100%;
+    height: 39px;
+    padding: 8px 11px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
+    background: #fff;
+    font-family: var(--font-body);
+    font-size: 12px;
+    outline: none;
+}
+
+.contact-form-grid textarea {
+    width: 100%;
+    min-height: 82px;
+    padding: 10px 11px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
+    background: #fff;
+    font-family: var(--font-body);
+    font-size: 12px;
+    resize: vertical;
+    outline: none;
+}
+
+.contact-form-grid input:focus,
+.contact-form-grid select:focus,
+.contact-form-grid textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(164, 91, 60, 0.10);
+}
+
+.contact-form > .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 39px;
+    padding: 9px 21px;
+    margin-top: 14px;
+    font-size: 12px;
+    border-radius: 25px;
+}
+
+@media (max-width: 520px) {
+    .contact-form {
+        padding: 16px;
+    }
+
+    .contact-form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .contact-form-grid .form-group.full-width {
+        grid-column: auto;
+    }
+}
+
+
+/* REDUCE SPACE ABOVE CONTACT FORM FIELDS */
+
+.contact-form-heading {
+    margin-bottom: 5px !important;
+    padding-bottom: 0 !important;
+}
+
+.contact-form-heading p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.contact-form {
+    margin-top: 0 !important;
+    padding-top: 12px !important;
+}
+
+
+/* CONTACT FORM - COMPACT HEIGHT */
+
+.contact-form-column {
+    padding: 18px !important;
+    box-sizing: border-box;
+}
+
+.contact-form-heading {
+    margin-bottom: 8px !important;
+}
+
+.contact-form-heading h2 {
+    margin-bottom: 5px;
+}
+
+.contact-form-heading p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-form {
+    padding: 8px 0 0 !important;
+    margin: 0 !important;
+}
+
+.contact-form-grid {
+    gap: 9px 14px !important;
+}
+
+.contact-form-grid input,
+.contact-form-grid select {
+    height: 36px !important;
+}
+
+.contact-form-grid textarea {
+    min-height: 65px !important;
+}
+
+.contact-form > .btn {
+    margin-top: 10px !important;
+}
+
+/* CONTACT FORM - MORE COMPACT VERSION */
+
+.contact-form-column {
+    padding: 20px !important;
+}
+
+.contact-form-heading {
+    margin-bottom: 4px !important;
+}
+
+.contact-form-heading .eyebrow {
+    margin-bottom: 4px !important;
+    font-size: 10px;
+}
+
+.contact-form-heading h2 {
+    font-size: 21px !important;
+    margin-bottom: 3px !important;
+}
+
+.contact-form-heading p:last-child {
+    font-size: 12px !important;
+    line-height: 1.35;
+    margin-bottom: 0 !important;
+}
+
+.contact-form {
+    padding: 5px 0 0 !important;
+}
+
+.contact-form-grid {
+    gap: 7px 12px !important;
+}
+
+.contact-form-grid label {
+    font-size: 11px !important;
+    margin-bottom: 3px !important;
+}
+
+.contact-form-grid input,
+.contact-form-grid select {
+    height: 32px !important;
+    padding: 5px 9px !important;
+    font-size: 11px !important;
+}
+
+.contact-form-grid textarea {
+    min-height: 52px !important;
+    height: 52px;
+    padding: 7px 9px !important;
+    font-size: 11px !important;
+}
+
+.contact-form > .btn {
+    min-height: 34px !important;
+    padding: 7px 17px !important;
+    margin-top: 7px !important;
+    font-size: 11px !important;
+}
+
+
+/* CART CATEGORY HEADING REFINEMENT */
+
+.cart-category-section {
+    margin-bottom: 22px;
+}
+
+.cart-category-heading {
+    font-family: var(--font-heading);
+    font-size: 19px !important;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text);
+    margin: 0 0 12px !important;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-border);
+}
+/* CRAVORA - STICKY MENU FILTERS */
+.menu-filter-section {
+    position: sticky;
+    top: 76px;
+    z-index: 100;
+    background: var(--color-bg);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(37, 39, 31, 0.05);
+}
+
+/* CRAVORA - INTERACTIVE FORM EFFECTS */
+
+/* Smooth transitions */
+.contact-form input,
+.contact-form select,
+.contact-form textarea,
+.reservation-form-card input,
+.reservation-form-card select,
+.reservation-form-card textarea {
+    transition: border-color 0.25s ease,
+                box-shadow 0.25s ease,
+                background-color 0.25s ease;
+}
+
+/* Focus effect */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus,
+.reservation-form-card input:focus,
+.reservation-form-card select:focus,
+.reservation-form-card textarea:focus {
+    border-color: var(--color-primary) !important;
+    background-color: #FFFEFC;
+    box-shadow: 0 0 0 3px rgba(164, 91, 60, 0.12);
+    outline: none;
+}
+
+/* Placeholder effect */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder,
+.reservation-form-card input::placeholder,
+.reservation-form-card textarea::placeholder {
+    color: #A69B90;
+    transition: opacity 0.2s ease;
+}
+
+.contact-form input:focus::placeholder,
+.contact-form textarea:focus::placeholder,
+.reservation-form-card input:focus::placeholder,
+.reservation-form-card textarea:focus::placeholder {
+    opacity: 0.55;
+}
+
+/* Submit button hover */
+.contact-form button[type="submit"],
+.reservation-form-card button[type="submit"] {
+    transition: transform 0.2s ease,
+                background-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.contact-form button[type="submit"]:hover,
+.reservation-form-card button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(37, 39, 31, 0.12);
+}
+
+/* Button click effect */
+.contact-form button[type="submit"]:active,
+.reservation-form-card button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* CRAVORA - PREMIUM MENU CARD HOVER EFFECTS */
+
+/* Smooth card animation */
+.menu-item-card {
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+}
+
+/* Lift card slightly */
+.menu-item-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 26px rgba(37, 39, 31, 0.12);
+    border-color: var(--color-secondary);
+}
+
+/* Smooth image zoom */
+.menu-item-card img {
+    transition: transform 0.4s ease;
+}
+
+.menu-item-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Smooth button feedback */
+.menu-item-card button {
+    transition: transform 0.2s ease,
+                background-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.menu-item-card button:hover {
+    transform: translateY(-1px);
+}
+
+/* Avoid hover movement on touch devices */
+@media (hover: none) {
+    .menu-item-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .menu-item-card:hover img {
+        transform: none;
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .menu-item-card,
+    .menu-item-card img,
+    .menu-item-card button {
+        transition: none;
+    }
+
+    .menu-item-card:hover,
+    .menu-item-card button:hover {
+        transform: none;
+    }
+}
+
+/* CRAVORA - ADD TO CART BUTTON EFFECTS */
+
+.menu-item-card .add-to-cart-btn {
+    transition: background-color 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.menu-item-card .add-to-cart-btn:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(164, 91, 60, 0.2);
+}
+
+/* Click effect */
+.menu-item-card .add-to-cart-btn:active {
+    transform: scale(0.96);
+    box-shadow: none;
+}
+
+/* Keyboard accessibility */
+.menu-item-card .add-to-cart-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+/* CRAVORA - CART COUNT ANIMATION */
+
+#header-cart-count {
+    display: inline-block;
+    transform-origin: center;
+}
+
+#header-cart-count.cart-count-pop {
+    animation: cartCountPop 0.35s ease;
+}
+
+@keyframes cartCountPop {
+    0% {
+        transform: scale(1);
+    }
+    45% {
+        transform: scale(1.3);
+    }
+    75% {
+        transform: scale(0.92);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #header-cart-count.cart-count-pop {
+        animation: none;
+    }
+}
+
+/* CRAVORA - MENU IMAGE PRESENTATION */
+
+.menu-item-card {
+    overflow: hidden;
+}
+
+.menu-item-card img {
+    display: block;
+    width: 100%;
+    height: 165px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+}
+
+/* Keep images looking good on smaller screens */
+@media (max-width: 600px) {
+    .menu-item-card img {
+        height: 155px;
+    }
+}
+
+/* CRAVORA - STICKY MENU SEARCH BAR */
+
+.menu-search {
+    position: sticky;
+    top: 145px;
+    z-index: 101;
+    background: var(--color-bg);
+    padding: 8px 0;
+}
+
+/* Keep search input visually clear */
+.menu-search input {
+    background: #FFFFFF;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    .menu-search {
+        top: 135px;
+    }
+}
+
+/* CRAVORA - SEARCH ABOVE STICKY FILTERS */
+
+.menu-search-top {
+    position: static;
+    padding: 0 0 12px;
+    width: 100%;
+}
+
+.menu-search-top input {
+    width: 100%;
+    height: 43px;
+    padding: 10px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 9px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+/* Search focus */
+.menu-search-top input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(164, 91, 60, 0.10);
+}
+
+/* Keep search and filters together while scrolling */
+.menu-filter-section {
+    position: sticky;
+    top: 76px;
+    z-index: 100;
+    background: var(--color-bg);
+}
+
+/* CRAVORA - COMPACT RIGHT-ALIGNED SEARCH */
+
+.menu-filter-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.menu-filter-top-row .menu-dropdown-filters {
+    flex: 1;
+    min-width: 0;
+}
+
+.menu-search-compact {
+    position: static;
+    flex: 0 0 230px;
+    width: 230px;
+    padding: 0;
+}
+
+.menu-search-compact input {
+    width: 100%;
+    height: 38px;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: #FFFFFF;
+    font-size: 12px;
+}
+
+.menu-search-compact input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(164, 91, 60, 0.10);
+}
+
+@media (max-width: 768px) {
+    .menu-filter-top-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .menu-search-compact {
+        flex: 1;
+        width: 100%;
+    }
+}
+
+/* CRAVORA - MATCH SEARCH SIZE WITH FILTER BOXES */
+
+.menu-filter-top-row {
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+}
+
+.menu-filter-top-row .menu-dropdown-filters {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.menu-filter-top-row .multi-select-filter {
+    flex: 1;
+    min-width: 0;
+}
+
+.menu-search-compact {
+    position: static;
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    padding: 0;
+    display: flex;
+}
+
+.menu-search-compact input {
+    width: 100%;
+    height: 100%;
+    min-height: 38px;
+    box-sizing: border-box;
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .menu-filter-top-row {
+        flex-direction: column;
+    }
+
+    .menu-filter-top-row .menu-dropdown-filters {
+        flex-wrap: wrap;
+    }
+
+    .menu-search-compact {
+        width: 100%;
+        flex: auto;
+    }
+
+    .menu-search-compact input {
+        min-height: 38px;
+    }
+}
+
+/* CRAVORA - RESTORE ORIGINAL FILTER WIDTHS */
+
+.menu-filter-top-row .menu-dropdown-filters {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-filter-top-row .multi-select-filter {
+    flex: 0 0 auto;
+    min-width: initial;
+}
+
+/* Keep search on the right */
+.menu-search-compact {
+    flex: 0 0 230px;
+    width: 230px;
+    min-width: 230px;
+}
+
+.menu-search-compact input {
+    width: 100%;
+    height: 100%;
+    min-height: 38px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .menu-filter-top-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .menu-filter-top-row .menu-dropdown-filters {
+        flex-wrap: wrap;
+    }
+
+    .menu-search-compact {
+        width: 100%;
+        min-width: 0;
+        flex: 1;
+    }
+
+    .menu-search-compact input {
+        min-height: 38px;
+    }
+}
+
+/* CRAVORA - FINAL SEARCH BOX SIZE */
+
+.menu-filter-top-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 12px;
+}
+
+.menu-filter-top-row .menu-dropdown-filters {
+    flex: 0 0 auto;
+}
+
+.menu-search-compact {
+    flex: 0 0 230px;
+    width: 230px;
+    min-width: 230px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    position: static;
+}
+
+.menu-search-compact input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 12px;
+    font-size: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .menu-filter-top-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .menu-search-compact {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* CRAVORA - PREVENT FILTER OPTIONS FROM BREAKING */
+
+.menu-filter-section .multi-select-filter,
+.menu-filter-section .multi-select-filter button,
+.menu-filter-section .multi-select-filter .filter-trigger,
+.menu-filter-section .multi-select-filter .filter-option,
+.menu-filter-section .multi-select-filter label {
+    white-space: nowrap;
+}
+
+/* Keep dropdown option text on one line */
+.menu-filter-section .multi-select-filter * {
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+/* Keep each dropdown option in a single row */
+.menu-filter-section .multi-select-filter .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Prevent option labels from shrinking */
+.menu-filter-section .multi-select-filter .filter-option span {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* CRAVORA - FULL WIDTH DROPDOWN OPTIONS */
+
+.menu-filter-section .multi-select-filter {
+    position: relative;
+}
+
+/* Allow dropdown panel to expand */
+.menu-filter-section .multi-select-filter .filter-options,
+.menu-filter-section .multi-select-filter .dropdown-menu,
+.menu-filter-section .multi-select-filter .multi-select-options {
+    width: max-content;
+    min-width: 100%;
+    max-width: 320px;
+    overflow-x: visible;
+    overflow-y: auto;
+}
+
+
+/* CRAVORA - FIX DROPDOWN OPTION WIDTH AND TEXT */
+
+.menu-filter-section .multi-select-filter {
+    position: relative;
+}
+
+.menu-filter-section .multi-select-panel {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: max-content;
+    min-width: 100%;
+    max-width: min(360px, 85vw);
+    max-height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    z-index: 200;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 9px;
+    box-shadow: 0 8px 22px rgba(37, 39, 31, 0.12);
+}
+
+.menu-filter-section .multi-select-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    min-width: max-content;
+    box-sizing: border-box;
+    padding: 10px 13px;
+    white-space: nowrap;
+}
+
+.menu-filter-section .multi-select-option span {
+    white-space: nowrap;
+    word-break: normal;
+    overflow-wrap: normal;
+    flex-shrink: 0;
+}
+
+.menu-filter-section .multi-select-option:hover {
+    background: var(--color-bg);
+}
+
+/* Keep checkbox size consistent */
+.menu-filter-section .multi-select-option input {
+    flex-shrink: 0;
+}
+
+/* CRAVORA - REQUIRED FIELD INDICATOR */
+
+.reservation-field label .required-star {
+    color: #E53935 !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    display: inline !important;
+    margin-left: 3px;
+    opacity: 1 !important;
+}
+
+
+/* CRAVORA CUSTOM DROPDOWNS */
+
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+/* Closed dropdown field - always white */
+.custom-select-trigger {
+    width: 100%;
+    height: 35px;
+    padding: 6px 32px 6px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
+    background: #FFFFFF !important;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 12px;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-select-trigger:hover,
+.custom-select-trigger:focus,
+.custom-select-trigger:focus-visible {
+    background: #FFFFFF !important;
+    border-color: var(--color-secondary);
+    outline: none;
+}
+
+.custom-select-trigger::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid var(--color-text-soft);
+    border-bottom: 1.5px solid var(--color-text-soft);
+    transform: rotate(45deg);
+}
+
+/* Dropdown options container */
+.custom-select-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(37, 39, 31, 0.12);
+    z-index: 300;
+    display: none;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.custom-select.open .custom-select-menu {
+    display: block;
+}
+
+/* All options - white by default */
+.custom-select-menu .custom-select-option,
+.custom-select-menu .custom-select-option.selected {
+    display: block;
+    width: 100%;
+    padding: 9px 10px;
+    border: none;
+    border-radius: 5px;
+    background: #FFFFFF !important;
+    color: var(--color-text) !important;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    text-align: left;
+    cursor: pointer;
+}
+
+/* Only the option under the mouse becomes grey */
+.custom-select-menu .custom-select-option:hover {
+    background: #E5DED2 !important;
+    color: #25271F !important;
+}
+
+/* Keyboard focus without a grey background */
+.custom-select-menu .custom-select-option:focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: -2px;
+}
+
+/* Keep original select values available to JavaScript */
+.native-select-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+/* Red mandatory star on Contact page */
+.contact-form .required-star {
+    color: #E53935 !important;
+    font-size: 15px;
+    font-weight: 700;
+    margin-left: 3px;
+}
+/* ORDER ONLINE - FILTER LAYOUT IMPROVEMENTS */
+
+/* Keep dropdowns on the left and let search fill the remaining space */
+.menu-filter-top-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.menu-dropdown-filters {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+}
+
+.menu-search-compact {
+    flex: 1;
+    width: auto !important;
+    min-width: 220px;
+    max-width: none !important;
+    margin-left: 0;
+}
+
+.menu-search-compact input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Make the dietary row more compact */
+.dietary-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dietary-filter-row h3 {
+    font-size: 14px;
+    margin-right: 3px;
+    white-space: nowrap;
+}
+
+.dietary-options {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.dietary-options label,
+.dietary-options button {
+    padding: 6px 12px;
+    min-height: 36px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.dietary-filter-row .clear-filters {
+    margin-left: auto;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+/* Keep the filter rows separated */
+.menu-filter-section {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+    .menu-filter-top-row {
+        flex-wrap: wrap;
+    }
+
+    .menu-search-compact {
+        flex: 1 1 100%;
+    }
+}
+/* CART ITEMS - RESPONSIVE GRID LAYOUT */
+
+/* Display cart items in a grid within each category */
+.cart-category-section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+/* Category heading spans the complete row */
+.cart-category-heading {
+    grid-column: 1 / -1;
+    margin-bottom: 0 !important;
+}
+
+/* Individual cart item card */
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: #FFFFFF;
+    box-sizing: border-box;
+}
+
+/* Item image */
+.cart-item-image {
+    width: 100%;
+    height: 145px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Item details */
+.cart-item-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-details h3 {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 5px;
+}
+
+.cart-item-details p {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.cart-item-details strong {
+    font-size: 14px;
+    color: var(--color-primary);
+}
+
+/* Quantity and remove controls */
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.cart-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-remove {
+    font-size: 12px;
+}
+
+/* Tablet: two items per row */
+@media (max-width: 900px) {
+    .cart-category-section {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile: one item per row */
+@media (max-width: 560px) {
+    .cart-category-section {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-item-image {
+        height: 180px;
+    }
+}
+/* COMPACT CART ITEM CARDS */
+
+.cart-category-section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    gap: 7px;
+    padding: 9px;
+    border-radius: 9px;
+}
+
+.cart-item-image {
+    height: 105px;
+}
+
+.cart-item-details h3 {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.cart-item-details p {
+    font-size: 11px;
+    line-height: 1.35;
+    margin-bottom: 5px;
+}
+
+.cart-item-details strong {
+    font-size: 13px;
+}
+
+.cart-item-actions {
+    gap: 5px;
+}
+
+.cart-quantity-controls {
+    gap: 8px;
+}
+
+.cart-quantity-controls button {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    font-size: 13px;
+}
+
+.cart-quantity-controls span {
+    font-size: 12px;
+}
+
+.cart-remove {
+    font-size: 11px;
+    padding: 3px 5px;
+}
+
+.cart-category-heading {
+    font-size: 17px !important;
+    padding-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+    .cart-category-section {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .cart-category-section {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-item-image {
+        height: 130px;
+    }
+}
+/* EXTRA COMPACT CART CARDS */
+
+.cart-category-section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.cart-item {
+    padding: 7px;
+    gap: 5px;
+    border-radius: 8px;
+}
+
+.cart-item-image {
+    height: 75px;
+    border-radius: 6px;
+}
+
+.cart-item-details h3 {
+    font-size: 12px;
+    line-height: 1.3;
+    margin-bottom: 2px;
+}
+
+.cart-item-details p {
+    font-size: 10px;
+    line-height: 1.3;
+    margin-bottom: 3px;
+}
+
+.cart-item-details strong {
+    font-size: 12px;
+}
+
+.cart-item-actions {
+    gap: 4px;
+}
+
+.cart-quantity-controls {
+    gap: 6px;
+}
+
+.cart-quantity-controls button {
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+}
+
+.cart-quantity-controls span {
+    font-size: 11px;
+}
+
+.cart-remove {
+    font-size: 10px;
+    padding: 2px 4px;
+}
+
+.cart-category-heading {
+    font-size: 16px !important;
+    padding-bottom: 5px;
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 900px) {
+    .cart-category-section {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .cart-category-section {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-item-image {
+        height: 110px;
+    }
+}
+/* CART - HORIZONTAL CARDS IN A GRID */
+
+/* Two cards per row */
+.cart-category-section {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+/* Category heading occupies the full row */
+.cart-category-heading {
+    grid-column: 1 / -1;
+}
+
+/* Preserve horizontal card arrangement */
+.cart-item {
+    display: grid;
+    grid-template-columns: 85px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* Image */
+.cart-item-image {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Dish details */
+.cart-item-details {
+    min-width: 0;
+}
+
+.cart-item-details h3 {
+    font-size: 13px;
+    line-height: 1.35;
+    margin-bottom: 4px;
+}
+
+.cart-item-details p {
+    font-size: 11px;
+    line-height: 1.35;
+    margin-bottom: 5px;
+}
+
+.cart-item-details strong {
+    font-size: 12px;
+}
+
+/* Controls on the right */
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+}
+
+.cart-quantity-controls {
+    gap: 6px;
+}
+
+.cart-quantity-controls button {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+}
+
+.cart-remove {
+    font-size: 11px;
+}
+
+/* Three cards on wider screens */
+@media (min-width: 1600px) {
+    .cart-category-section {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .cart-item {
+        grid-template-columns: 65px minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .cart-item-image {
+        width: 65px;
+        height: 75px;
+    }
+}
+
+/* One card per row on small screens */
+@media (max-width: 650px) {
+    .cart-category-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================
+   CRAVORA CHECKOUT PAGE
+===================================== */
+
+.checkout-page {
+    padding: 55px 0 70px;
+    min-height: 75vh;
+}
+
+.checkout-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.checkout-eyebrow {
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.checkout-heading h1 {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    margin-bottom: 9px;
+}
+
+.checkout-heading > p:last-child {
+    color: var(--color-text-soft);
+    font-size: 14px;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(330px, 0.85fr);
+    align-items: start;
+    gap: 25px;
+}
+
+.checkout-details-card,
+.checkout-bill-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow-soft);
+}
+
+.checkout-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 22px;
+}
+
+.checkout-step {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--color-bg-soft);
+    color: var(--color-primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.checkout-section-heading h2,
+.checkout-bill-heading h2 {
+    font-family: var(--font-heading);
+    font-size: 19px;
+    margin-bottom: 4px;
+}
+
+.checkout-section-heading p {
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+
+.checkout-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px 15px;
+}
+
+.checkout-field {
+    min-width: 0;
+}
+
+.checkout-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.checkout-field label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.checkout-field input,
+.checkout-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 10px 12px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--color-text);
+    outline: none;
+}
+
+.checkout-field input {
+    height: 42px;
+}
+
+.checkout-field textarea {
+    min-height: 85px;
+    resize: vertical;
+}
+
+.checkout-field input:focus,
+.checkout-field textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(164, 91, 60, 0.10);
+}
+
+.required-star {
+    color: #E53935;
+    margin-left: 3px;
+    font-size: 14px;
+}
+
+.optional-label {
+    color: var(--color-text-faint);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.checkout-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: 27px 0;
+}
+
+.pickup-notice {
+    background: var(--color-bg);
+    border-left: 3px solid var(--color-primary);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+}
+
+.pickup-notice strong {
+    font-size: 13px;
+    color: var(--color-primary-dark);
+}
+
+.pickup-notice p {
+    font-size: 11px;
+    color: var(--color-text-soft);
+    margin-top: 4px;
+    line-height: 1.5;
+}
+
+/* BILL SUMMARY */
+
+.checkout-bill-card {
+    position: sticky;
+    top: 95px;
+}
+
+.checkout-bill-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.checkout-bill-heading .checkout-eyebrow {
+    margin-bottom: 5px;
+}
+
+.checkout-bill-heading a,
+.checkout-back-link {
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.checkout-bill-heading a:hover,
+.checkout-back-link:hover {
+    color: var(--color-primary-dark);
+}
+
+.checkout-loading {
+    padding: 20px 0;
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+
+.checkout-bill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--color-bg-soft);
+}
+
+.checkout-bill-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.checkout-bill-item-info strong {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.checkout-bill-item-info span {
+    color: var(--color-text-soft);
+    font-size: 11px;
+}
+
+.checkout-bill-item > strong {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.checkout-bill-calculations {
+    padding-top: 15px;
+}
+
+.bill-calculation-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+
+.bill-calculation-row strong {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.bill-total-row {
+    border-top: 1px solid var(--color-border);
+    padding-top: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.bill-total-row strong {
+    color: var(--color-primary-dark);
+    font-size: 17px;
+}
+
+.checkout-bill-note {
+    background: var(--color-bg);
+    border-radius: 7px;
+    padding: 10px;
+    margin: 15px 0;
+    color: var(--color-text-soft);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.checkout-place-order {
+    width: 100%;
+    min-height: 45px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.checkout-back-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* SUCCESS POPUP */
+
+.order-success-overlay[hidden] {
+    display: none !important;
+}
+
+.order-success-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(37, 39, 31, 0.65);
+}
+
+.order-success-popup {
+    width: 100%;
+    max-width: 430px;
+    padding: 35px 28px;
+    border-radius: 18px;
+    background: #FFFFFF;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
+    animation: successPopupIn 0.35s ease;
+}
+
+.success-tick {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #E4F2E7;
+    color: #397653;
+    font-size: 38px;
+    font-weight: 700;
+    animation: successTickIn 0.45s ease;
+}
+
+.order-success-popup h2 {
+    font-family: var(--font-heading);
+    font-size: 23px;
+    margin: 8px 0;
+}
+
+.success-message {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-soft);
+    margin-bottom: 22px;
+}
+
+.success-order-number {
+    background: var(--color-bg);
+    border-radius: 9px;
+    padding: 13px;
+    margin-bottom: 15px;
+}
+
+.success-order-number span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--color-text-soft);
+    margin-bottom: 5px;
+}
+
+.success-order-number strong {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    color: var(--color-primary-dark);
+}
+
+.success-pickup-details {
+    color: var(--color-text-soft);
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.order-success-popup .btn {
+    display: inline-flex;
+    justify-content: center;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+@keyframes successPopupIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes successTickIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 850px) {
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-bill-card {
+        position: static;
+    }
+}
+
+@media (max-width: 520px) {
+    .checkout-page {
+        padding: 35px 0 45px;
+    }
+
+    .checkout-heading h1 {
+        font-size: 27px;
+    }
+
+    .checkout-details-card,
+    .checkout-bill-card {
+        padding: 18px;
+    }
+
+    .checkout-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-field.full-width {
+        grid-column: auto;
+    }
+}
+/* =================================
+   CRAVORA CHECKOUT MODAL
+================================= */
+
+.checkout-modal-overlay[hidden],
+.order-success-overlay[hidden] {
+    display: none !important;
+}
+
+.checkout-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(37, 39, 31, 0.65);
+    backdrop-filter: blur(4px);
+}
+
+.checkout-modal {
+    width: 100%;
+    max-width: 720px;
+    max-height: 88vh;
+    overflow-y: auto;
+    background: var(--color-bg);
+    border-radius: 18px;
+    padding: 28px 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.checkout-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 22px;
+}
+
+.checkout-modal-header h2 {
+    font-family: var(--font-heading);
+    font-size: 25px;
+    margin: 5px 0 0;
+    color: var(--color-text);
+}
+
+.checkout-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-bg-soft);
+    color: var(--color-text);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.checkout-close:hover {
+    background: var(--color-border);
+}
+
+
+/* PROGRESS INDICATOR */
+
+.checkout-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.checkout-progress-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-faint);
+}
+
+.checkout-progress-step span {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-bg-soft);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.checkout-progress-step.active {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.checkout-progress-step.active span {
+    background: var(--color-primary);
+    color: white;
+}
+
+.checkout-progress-step small {
+    font-size: 12px;
+}
+
+.checkout-progress-line {
+    width: 65px;
+    height: 1px;
+    background: var(--color-border);
+}
+
+
+/* FORM CONTENT */
+
+.checkout-modal h3 {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    margin: 0 0 15px;
+    color: var(--color-text);
+}
+
+.checkout-modal .checkout-form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+.checkout-modal .checkout-field {
+    min-width: 0;
+}
+
+.checkout-modal .checkout-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.checkout-modal .checkout-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.checkout-modal .checkout-field input,
+.checkout-modal .checkout-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: white;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 13px;
+    outline: none;
+}
+
+.checkout-modal .checkout-field input:focus,
+.checkout-modal .checkout-field textarea:focus {
+    border-color: var(--color-primary);
+}
+
+.checkout-modal .checkout-field textarea {
+    resize: vertical;
+}
+
+.checkout-modal-divider {
+    height: 1px;
+    background: var(--color-border);
+    margin: 22px 0;
+}
+
+.checkout-modal .pickup-notice {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: var(--color-bg-soft);
+}
+
+.checkout-modal .pickup-notice strong {
+    font-size: 13px;
+}
+
+.checkout-modal .pickup-notice p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+
+
+/* MODAL BUTTONS */
+
+.checkout-next-btn {
+    width: 100%;
+    margin-top: 22px;
+    justify-content: center;
+}
+
+.checkout-review-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.checkout-review-actions button {
+    min-width: 130px;
+    justify-content: center;
+}
+
+.checkout-review-actions .btn-secondary {
+    background: var(--color-bg-soft);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+
+/* ORDER REVIEW */
+
+.checkout-bill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.checkout-bill-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.checkout-bill-item-info strong {
+    font-size: 14px;
+}
+
+.checkout-bill-item-info span {
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+
+.checkout-bill-item > strong {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.checkout-bill-calculations {
+    margin-top: 16px;
+}
+
+.checkout-modal .bill-calculation-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    font-size: 14px;
+}
+
+.checkout-modal .bill-total-row {
+    border-top: 1px solid var(--color-border);
+    margin-top: 8px;
+    padding-top: 15px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.checkout-bill-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+
+
+/* SUCCESS POPUP ABOVE CHECKOUT */
+
+.order-success-overlay {
+    z-index: 1100;
+}
+
+
+/* SMALL SCREENS */
+
+@media (max-width: 600px) {
+    .checkout-modal-overlay {
+        padding: 10px;
+        align-items: center;
+    }
+
+    .checkout-modal {
+        max-height: 92vh;
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .checkout-modal-header h2 {
+        font-size: 21px;
+    }
+
+    @media(max-width:600px) {
+    .checkout-modal .checkout-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    .checkout-modal .checkout-field.full-width {
+        grid-column: auto;
+    }
+
+    .checkout-progress-step small {
+        font-size: 11px;
+    }
+
+    .checkout-review-actions button {
+        min-width: 0;
+        flex: 1;
+    }
+}
+/* CHECKOUT CUSTOMER DETAILS - THREE COLUMNS */
+.checkout-modal #checkout-step-1 .checkout-form-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    width: 100%;
+}
+
+.checkout-modal #checkout-step-1 .checkout-form-grid .checkout-field {
+    grid-column: auto !important;
+    width: 100%;
+    min-width: 0;
+}
+
+.checkout-modal #checkout-step-1 .checkout-form-grid input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .checkout-modal #checkout-step-1 .checkout-form-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* COMPACT PICKUP NOTICE */
+.checkout-modal .pickup-notice-compact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    margin-bottom: 12px;
+    border-radius: 7px;
+}
+
+.checkout-modal .pickup-notice-compact strong {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.checkout-modal .pickup-notice-compact span {
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+.checkout-modal label {
+    color: var(--color-text);
+}
+
+.checkout-modal label::first-letter {
+    color: inherit;
+}
+.checkout-modal #pickup-time {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background-color: #fff;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    appearance: auto;
+}
+
+.checkout-modal #pickup-time:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(164, 91, 60, 0.10);
+}
+
+.checkout-modal #pickup-time optgroup {
+    font-weight: 600;
+    color: var(--color-primary-dark);
+}
+
+.checkout-modal #pickup-time option {
+    padding: 8px;
+    color: var(--color-text);
+    background: #fff;
+}
+
+/* Custom pickup time dropdown */
+.custom-time-picker {
+    position: relative;
+    width: 100%;
+}
+
+.custom-time-trigger {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.custom-time-trigger:hover,
+.custom-time-trigger:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+.time-dropdown-arrow {
+    font-size: 19px;
+    color: var(--color-text-soft);
+}
+
+.custom-time-options {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    max-height: 260px;
+    overflow-y: auto;
+    z-index: 500;
+    padding: 7px;
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 9px;
+    box-shadow: 0 8px 22px rgba(37, 39, 31, 0.12);
+}
+
+.custom-time-options[hidden] {
+    display: none !important;
+}
+
+.time-group-label {
+    padding: 10px 9px 6px;
+    color: var(--color-primary-dark);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.time-option {
+    display: block;
+    width: 100%;
+    padding: 9px 11px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.time-option:hover {
+    background: #E5DED2;
+}
+
+.time-option.selected {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.pickup-time-source {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+/* Checkout time dropdown fixes */
+
+.custom-time-trigger {
+    position: relative;
+}
+
+.time-dropdown-arrow {
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--color-text-soft);
+    border-bottom: 1.5px solid var(--color-text-soft);
+    transform: rotate(45deg);
+    margin-right: 3px;
+    margin-top: -4px;
+    flex-shrink: 0;
+}
+
+/* Open the time options upwards */
+.custom-time-options {
+    top: auto !important;
+    bottom: calc(100% + 6px) !important;
+    left: 0;
+    width: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+}
+/* Compact checkout order review */
+
+.checkout-modal {
+    max-height: 94vh;
+    padding: 22px 28px;
+}
+
+.checkout-modal-header {
+    margin-bottom: 14px;
+}
+
+.checkout-progress {
+    margin-bottom: 18px;
+}
+
+.checkout-modal #checkout-step-2 h3 {
+    margin-bottom: 8px;
+}
+
+.checkout-bill-item {
+    padding: 7px 0;
+    min-height: auto;
+}
+
+.checkout-bill-item-info {
+    gap: 2px;
+}
+
+.checkout-bill-item-info strong {
+    font-size: 13px;
+}
+
+.checkout-bill-item-info span {
+    font-size: 11px;
+}
+
+.checkout-bill-item > strong {
+    font-size: 13px;
+}
+
+.checkout-bill-calculations {
+    margin-top: 8px;
+}
+
+.checkout-modal .bill-calculation-row {
+    padding: 6px 0;
+}
+
+.checkout-modal .bill-total-row {
+    margin-top: 5px;
+    padding-top: 10px;
+}
+/* Two dishes per row with individual right-aligned amounts */
+
+#checkout-bill-items {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    column-gap: 24px;
+    row-gap: 0;
+}
+
+#checkout-bill-items .checkout-bill-item {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+#checkout-bill-items .checkout-bill-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+#checkout-bill-items .checkout-bill-item > strong {
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    #checkout-bill-items {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* Keep item amount on the right */
+
+.checkout-bill-item {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.checkout-bill-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.checkout-bill-item > strong {
+    flex-shrink: 0;
+    margin-left: auto;
+    text-align: right;
+    white-space: nowrap;
+}
+/* Two dishes per row with individual right-aligned amounts */
+
+.checkout-bill-items {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 0;
+}
+
+.checkout-bill-item {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.checkout-bill-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.checkout-bill-item > strong {
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .checkout-bill-items {
+        grid-template-columns: 1fr;
+    }
+}
+/* Checkout bill serial numbers */
+
+#checkout-bill-items .checkout-bill-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.checkout-bill-serial {
+    flex-shrink: 0;
+    color: var(--color-text-soft);
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+#checkout-bill-items .checkout-bill-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+#checkout-bill-items .checkout-bill-item-amount {
+    flex-shrink: 0;
+    white-space: nowrap;
+    text-align: right;
+}
+
+
+/* =========================================
+   CRAVORA CUSTOM RESERVATION DROPDOWNS
+========================================= */
+
+/* Hide the original browser dropdown */
+.native-select-hidden {
+    display: none !important;
+}
+
+/* Custom dropdown wrapper */
+.custom-select {
+    position: relative;
+    width: 100%;
+}
+
+/* Dropdown trigger */
+.custom-select-trigger {
+    width: 100%;
+    min-height: 52px;
+    padding: 12px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #FFFFFF !important;
+    color: #25271F !important;
+
+    border: 1px solid #DCC9B3 !important;
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 16px;
+    text-align: left;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease;
+}
+
+/* Trigger hover */
+.custom-select-trigger:hover {
+    background-color: #F0EFEB !important;
+    border-color: #BDB5A8 !important;
+}
+
+/* Trigger focus */
+.custom-select-trigger:focus,
+.custom-select-trigger:focus-visible {
+    outline: none !important;
+    border-color: #A45B3C !important;
+    box-shadow: 0 0 0 2px rgba(164, 91, 60, 0.12);
+}
+
+/* Dropdown options container */
+.custom-select-menu {
+    display: none;
+
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+
+    width: 100%;
+    max-height: 240px;
+    overflow-y: auto;
+
+    flex-direction: column;
+
+    background-color: #FFFFFF !important;
+    border: 1px solid #DCC9B3 !important;
+    border-radius: 10px;
+
+    box-shadow: 0 6px 18px rgba(37, 39, 31, 0.12);
+
+    z-index: 9999;
+}
+
+/* Show dropdown below the trigger */
+.custom-select.open .custom-select-menu {
+    display: flex !important;
+}
+
+/* Individual dropdown options */
+.custom-select-option {
+    width: 100%;
+    padding: 11px 16px;
+
+    background-color: #FFFFFF !important;
+    color: #25271F !important;
+
+    border: none;
+    border-radius: 0;
+
+    font-family: inherit;
+    font-size: 15px;
+    text-align: left;
+
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+/* Grey hover instead of blue */
+.custom-select-option:hover,
+.custom-select-option:focus {
+    background-color: #E8E6E0 !important;
+    color: #25271F !important;
+    outline: none !important;
+}
+
+/* Selected option */
+.custom-select-option.selected {
+    background-color: #E5E2DB !important;
+    color: #25271F !important;
+}
+
+/* Selected option hover */
+.custom-select-option.selected:hover {
+    background-color: #DCD8CF !important;
+}
+.custom-select-option:hover {
+    background-color: red !important;
+    color: white !important;
+}
+.custom-select-trigger {
+    width: 100%;
+    height: 44px !important;
+    min-height: 44px !important;
+    padding: 0 12px !important;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF !important;
+    color: #25271F !important;
+    border: 1px solid #DCC9B3 !important;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+/* ACTIVE NAVIGATION LINK */
+.main-nav a.active {
+    color: #25271F !important;
+    font-weight: 600;
+}
+/* CONTACT FORM SUCCESS TOAST */
+.contact-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    min-width: 300px;
+    padding: 18px 22px;
+
+    background: #25271F;
+    color: #FFFFFF;
+
+    border-left: 4px solid #397653;
+    border-radius: 10px;
+
+    box-shadow: 0 8px 25px rgba(37, 39, 31, 0.2);
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.contact-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    background: #397653;
+    color: #FFFFFF;
+
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.contact-toast strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.contact-toast p {
+    margin: 0;
+    color: #E5DED2;
+    font-size: 12px;
+}
+
+@media (max-width: 480px) {
+    .contact-toast {
+        left: 16px;
+        right: 16px;
+        bottom: 20px;
+        min-width: unset;
+    }
+}
+/* CRAVORA EXPERIENCE - LAYOUT FIX */
+
+.experience-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) !important;
+    align-items: center;
+    gap: 60px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.experience-image {
+    width: 100%;
+    min-width: 0;
+}
+
+.experience-main-image {
+    width: 100%;
+    height: 440px;
+    min-height: 440px;
+    display: block;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.experience-content {
+    min-width: 0;
+}
+
+@media (max-width: 700px) {
+    .experience-grid {
+        grid-template-columns: 1fr !important;
+        gap: 35px;
+    }
+
+    .experience-main-image {
+        height: 320px;
+        min-height: 320px;
+    }
+}
+.main-nav a.active {
+    color: #000000;
+}
+html {
+    scrollbar-gutter: stable;
+}
+
+/* CRAVORA - REDUCED ORDER MENU SPACING */
+
+.menu-hero {
+    padding: 18px 0 12px;
+}
+
+.menu-hero-content .eyebrow {
+    margin-bottom: 4px;
+}
+
+.menu-hero-content h1 {
+    margin-bottom: 4px;
+}
+
+.menu-filter-section {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.menu-items-section {
+    padding-top: 10px;
+    padding-bottom: 70px;
+}
+
+.menu-course-section {
+    margin-bottom: 35px;
+}
+
+.menu-course-section h2 {
+    margin-bottom: 16px;
+    padding-bottom: 9px;
+}
+
+@media (max-width: 768px) {
+    .menu-hero {
+        padding: 18px 0 12px;
+    }
+
+    .menu-filter-section {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}
+/* Compact cuisine, course, spice and mood filters */
+.menu-filter-section .multi-select-trigger {
+    min-height: 38px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 12px;
+    border-radius: 7px;
+}
+
+/* Compact dietary filter options */
+.dietary-filter-row .dietary-options label,
+.dietary-filter-row .dietary-options button {
+    min-height: 30px;
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 20px;
+}
+
+
+/* Search inside Order Online dropdown filters */
+.multi-select-search {
+    display: block;
+    width: calc(100% - 16px);
+    margin: 8px;
+    padding: 9px 11px;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--color-text);
+    font-size: 12px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.multi-select-search:focus {
+    border-color: var(--color-primary);
+}
+
+.multi-select-options {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.multi-select-option[hidden] {
+    display: none;
+}
+/* Compact search field inside filter dropdowns */
+.multi-select-search {
+    height: 30px;
+    min-height: 30px;
+    padding: 5px 9px;
+    margin: 6px 8px;
+    width: calc(100% - 16px);
+    font-size: 11px;
+    border-radius: 5px;
+}
+
+.multi-select-options {
+    max-height: 180px;
+    overflow-y: auto;
+}
+/* Extra-compact dropdown search */
+.multi-select-search {
+    width: calc(100% - 16px);
+    height: 27px;
+    min-height: 27px;
+    margin: 5px 8px;
+    padding: 4px 8px 4px 28px;
+    font-size: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23766D63' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 9px center;
+    background-size: 12px;
+}
+
+.multi-select-search:focus {
+    border-color: var(--color-primary);
+}
+/* CRAVORA - EXACTLY TWO LINES FOR MENU DESCRIPTIONS */
+.menu-item-card .menu-item-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: auto;
+    min-height: 32px;
+    max-height: 32px;
+    line-height: 16px;
+    margin-bottom: 9px;
+}
+
+/* ========================================
+   TWO-STEP CHECKOUT POPUP
+======================================== */
+
+.checkout-page {
+  min-height: 100vh;
+}
+
+.checkout-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(37, 39, 31, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.checkout-modal {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: var(--color-bg);
+  border-radius: 18px;
+  padding: 38px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25);
+}
+
+.checkout-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-bg-soft);
+  color: var(--color-text);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.checkout-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.checkout-progress span {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--color-text-soft);
+}
+
+.checkout-progress span.active,
+.checkout-progress span.completed {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.checkout-progress-line {
+  width: 65px;
+  height: 2px;
+  background: var(--color-border);
+}
+
+.checkout-modal .checkout-details-card {
+  width: 100%;
+}
+
+.checkout-modal .checkout-bill-card {
+  margin-top: 25px;
+}
+
+.checkout-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.checkout-modal-actions .checkout-place-order {
+  width: auto;
+  min-width: 150px;
+}
+
+.checkout-modal .checkout-bill-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.checkout-error {
+  color: #B42318;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .checkout-modal-backdrop {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .checkout-modal {
+    max-height: calc(100vh - 20px);
+    padding: 42px 20px 24px;
+    border-radius: 12px;
+  }
+
+  .checkout-modal-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .checkout-modal-actions button {
+    width: 100%;
+  }
+}
+
+/* CRAVORA CHECKOUT - REFERENCE DESIGN */
+
+.checkout-modal {
+  width: min(900px, calc(100vw - 32px));
+  max-width: 900px;
+  padding: 32px 35px 26px;
+  border-radius: 22px;
+  background: #f5f2e9;
+  color: #25271f;
+}
+
+.checkout-heading {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.checkout-heading .checkout-eyebrow {
+  color: #a45b3c;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.checkout-heading h1 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.checkout-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 18px 0 24px;
+}
+
+.checkout-progress span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e5e0d5;
+  color: #817c72;
+  font-weight: 700;
+}
+
+.checkout-progress span.active,
+.checkout-progress span.completed {
+  background: #a45b3c;
+  color: white;
+}
+
+.checkout-progress-line {
+  width: 80px;
+  height: 2px;
+  background: #d9c5b5;
+}
+
+.checkout-details-card {
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.checkout-section-heading {
+  margin: 20px 0 22px;
+}
+
+.checkout-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.checkout-field {
+  min-width: 0;
+}
+
+.checkout-field input,
+.checkout-field select,
+.checkout-field textarea {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid #d7d0c2;
+  border-radius: 11px;
+  background: #fff;
+  padding: 0 15px;
+  color: #25271f;
+  font: inherit;
+}
+
+.checkout-field textarea {
+  padding-top: 12px;
+}
+
+.checkout-details-card > form > .checkout-form-grid:first-of-type {
+  padding-bottom: 27px;
+  border-bottom: 1px solid #d7d0c2;
+}
+
+.pickup-notice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  margin: 0 0 20px;
+  border-left: 3px solid #a45b3c;
+  border-radius: 9px;
+  background: #e8e1d5;
+}
+
+.pickup-notice strong {
+  color: #80503b;
+  white-space: nowrap;
+}
+
+.pickup-notice p {
+  margin: 0;
+  color: #766d63;
+}
+
+.checkout-details-card > form > .checkout-form-grid:nth-of-type(2) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.checkout-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 26px;
+}
+
+.checkout-modal-actions .checkout-place-order {
+  width: 100%;
+  min-height: 60px;
+  border-radius: 6px;
+  background: #a45b3c;
+}
+
+.checkout-modal-close {
+  top: 25px;
+  right: 30px;
+}
+
+@media (max-width: 650px) {
+  .checkout-modal {
+    padding: 26px 20px;
+  }
+
+  .checkout-form-grid,
+  .checkout-details-card > form > .checkout-form-grid:nth-of-type(2) {
+    grid-template-columns: 1fr;
+  }
+
+  .pickup-notice {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .checkout-progress {
+    gap: 7px;
+  }
+}
+/* CHECKOUT - MATCH ORIGINAL WIREFRAME SIZE */
+
+.checkout-modal {
+    width: 100%;
+    max-width: 720px !important;
+    max-height: 88vh !important;
+    padding: 22px 28px !important;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-radius: 18px;
+}
+
+.checkout-modal-header {
+    margin-bottom: 14px;
+}
+
+.checkout-progress {
+    margin-bottom: 18px;
+}
+
+.checkout-modal h3 {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.checkout-modal .checkout-form-grid {
+    gap: 14px;
+}
+
+.checkout-modal .checkout-field input,
+.checkout-modal .checkout-field select {
+    height: 44px;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.checkout-modal .pickup-notice-compact {
+    padding: 9px 12px;
+    margin-bottom: 12px;
+}
+
+.checkout-next-btn {
+    margin-top: 18px;
+    min-height: 50px;
+}
+
+/* Grey hover for custom pickup time options */
+.checkout-modal .time-option:hover,
+.checkout-modal .time-option:focus {
+    background: #E5DED2 !important;
+    color: #25271F !important;
+    outline: none;
+}
+
+@media (max-width: 600px) {
+    .checkout-modal {
+        padding: 20px !important;
+        max-height: 92vh !important;
+    }
+}
+/* Compact Cravora Checkout Popup */
+.checkout-modal {
+    width: 90%;
+    max-width: 620px;
+    max-height: 82vh;
+    padding: 18px 24px;
+    overflow-y: auto;
+    border-radius: 16px;
+}
+
+.checkout-modal-header {
+    margin-bottom: 12px;
+}
+
+.checkout-progress {
+    margin: 12px 0 18px;
+}
+
+.checkout-form-grid {
+    gap: 12px;
+}
+
+.checkout-field {
+    margin-bottom: 10px;
+}
+
+.checkout-field input,
+.checkout-field select {
+    padding: 9px 11px;
+    font-size: 13px;
+}
+
+.pickup-notice-compact {
+    padding: 9px 12px;
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+.checkout-modal-divider {
+    margin: 12px 0;
+}
+
+.checkout-next-btn {
+    padding: 11px 16px;
+    margin-top: 12px;
+}
+/* Custom Cravora Pickup Time Dropdown */
+
+.custom-time-picker {
+    position: relative;
+    width: 100%;
+}
+
+.custom-time-trigger {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #DCC9B3;
+    border-radius: 6px;
+    color: #25271F;
+    font-family: inherit;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.custom-time-trigger:hover,
+.custom-time-trigger.open {
+    border-color: #A45B3C;
+}
+
+.custom-time-arrow {
+    color: #766D63;
+    font-size: 17px;
+    line-height: 1;
+}
+
+.custom-time-options {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    max-height: 190px;
+    overflow-y: auto;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #DCC9B3;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(37, 39, 31, 0.12);
+    z-index: 100;
+}
+
+.time-group-label {
+    padding: 8px 10px 5px;
+    color: #A45B3C;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.time-option {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: #25271F;
+    font-family: inherit;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.time-option:hover {
+    background: #F0ECE5;
+}
+
+.time-option.selected {
+    background: #E5DED2;
+    color: #80442F;
+    font-weight: 600;
+}
+
+.custom-time-trigger:focus-visible,
+.time-option:focus-visible {
+    outline: 2px solid #A45B3C;
+    outline-offset: 2px;
+}
+/* Cravora Checkout - Smaller Popup Override */
+
+.checkout-modal-overlay .checkout-modal {
+    width: min(560px, calc(100vw - 28px)) !important;
+    max-width: 560px !important;
+    min-width: 0 !important;
+    max-height: 78vh !important;
+    padding: 16px 20px !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+}
+
+/* Reduce header spacing */
+.checkout-modal .checkout-modal-header {
+    margin-bottom: 8px !important;
+}
+
+/* Compact progress section */
+.checkout-modal .checkout-progress {
+    margin: 8px 0 14px !important;
+}
+
+/* Compact headings */
+.checkout-modal #checkout-step-1 h3 {
+    margin-top: 8px !important;
+    margin-bottom: 10px !important;
+    font-size: 17px !important;
+}
+
+/* Reduce form spacing */
+.checkout-modal .checkout-form-grid {
+    gap: 10px !important;
+}
+
+.checkout-modal .checkout-field {
+    margin-bottom: 7px !important;
+}
+
+.checkout-modal .checkout-field input,
+.checkout-modal .checkout-field select,
+.checkout-modal .custom-time-trigger {
+    min-height: 38px !important;
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+}
+
+/* Compact pickup notice */
+.checkout-modal .pickup-notice-compact {
+    margin: 8px 0 !important;
+    padding: 8px 10px !important;
+}
+
+/* Compact divider and button */
+.checkout-modal .checkout-modal-divider {
+    margin: 9px 0 !important;
+}
+
+.checkout-modal .checkout-next-btn {
+    margin-top: 8px !important;
+    padding: 10px 14px !important;
+}
+
+@media (max-width: 600px) {
+    .checkout-modal-overlay .checkout-modal {
+        width: calc(100vw - 24px) !important;
+        padding: 14px 16px !important;
+        max-height: 85vh !important;
+    }
+}
+/* Align the pickup time dropdown arrow */
+
+.custom-time-trigger {
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: left !important;
+}
+
+.custom-time-arrow {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-left: 10px;
+    line-height: 1 !important;
+    font-size: 16px !important;
+    color: #766D63;
+}
+/* Precisely aligned CSS dropdown arrow */
+
+.custom-time-trigger {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative;
+}
+
+.custom-time-arrow {
+    width: 8px !important;
+    height: 8px !important;
+    min-width: 8px;
+    display: block !important;
+    flex-shrink: 0;
+    margin-left: auto !important;
+    margin-right: 3px !important;
+    border-right: 1.7px solid #766D63;
+    border-bottom: 1.7px solid #766D63;
+    transform: rotate(45deg);
+    position: relative;
+    top: -2px;
+    transition: transform 0.2s ease;
+}
+
+.custom-time-arrow.arrow-up {
+    transform: rotate(225deg);
+    top: 2px;
+}
+/* Cravora Date Picker - Grey Selection */
+
+.checkout-modal input[type="date"] {
+    accent-color: #A49B8E;
+    color-scheme: light;
+}
+
+.checkout-modal input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.75;
+}
+/* Cravora Custom Calendar */
+
+.custom-date-picker {
+    position: relative;
+    width: 100%;
+}
+
+.custom-date-trigger {
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1px solid #DCC9B3;
+    border-radius: 6px;
+    color: #25271F;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.custom-date-trigger:hover {
+    border-color: #A45B3C;
+}
+
+.custom-date-icon {
+    color: #766D63;
+    font-size: 16px;
+}
+
+.custom-calendar {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 8px);
+    width: 270px;
+    max-width: calc(100vw - 40px);
+    background: #FFFFFF;
+    border: 1px solid #DCC9B3;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    z-index: 300;
+}
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #25271F;
+    font-size: 13px;
+}
+
+.calendar-nav {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: #25271F;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.calendar-nav:hover:not(:disabled) {
+    background: #F0ECE5;
+}
+
+.calendar-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+}
+
+.calendar-weekday {
+    padding: 5px 0;
+    color: #766D63;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.calendar-empty {
+    height: 30px;
+}
+
+.calendar-day {
+    width: 30px;
+    height: 30px;
+    justify-self: center;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #25271F;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.calendar-day:hover:not(:disabled) {
+    background: #F0ECE5;
+}
+
+.calendar-day.selected {
+    background: #E5DED2;
+    color: #25271F;
+    font-weight: 700;
+}
+
+.calendar-day.today:not(.selected) {
+    outline: 1px solid #A45B3C;
+}
+
+.calendar-day:disabled {
+    color: #C8C2BA;
+    cursor: not-allowed;
+}
+
+.calendar-day:focus-visible,
+.calendar-nav:focus-visible {
+    outline: 2px solid #A45B3C;
+    outline-offset: 2px;
+}
+
+
+/* CRAVORA CUSTOM DINING DROPDOWNS */
+
+.custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-trigger {
+  width: 100%;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 32px 0 12px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  background: #fff !important;
+  color: #25271F !important;
+  border: 1px solid #DCC9B3 !important;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.custom-select-trigger:hover,
+.custom-select-trigger:focus,
+.custom-select-trigger:focus-visible {
+  background: #fff !important;
+  border-color: #A45B3C !important;
+  outline: none;
+}
+
+.custom-select-trigger::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 16px;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid #766D63;
+  border-bottom: 1.5px solid #766D63;
+  transform: rotate(45deg);
+}
+
+.custom-select-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  max-height: 240px;
+  overflow-y: auto;
+  flex-direction: column;
+  padding: 5px;
+  box-sizing: border-box;
+  background: #fff !important;
+  border: 1px solid #DCC9B3 !important;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(37, 39, 31, 0.12);
+  z-index: 9999;
+}
+
+.custom-select.open .custom-select-menu {
+  display: flex !important;
+}
+
+.custom-select-option {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  background: #fff !important;
+  color: #25271F !important;
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.custom-select-option:hover {
+  background: #E8E6E0 !important;
+  color: #25271F !important;
+}
+
+.custom-select-option.selected {
+  background: #fff !important;
+  color: #25271F !important;
+}
+
+.custom-select-option:focus-visible {
+  outline: 2px solid #A45B3C;
+  outline-offset: -2px;
+}
+
+/* CRAVORA DINING CALENDAR GRID FIX */
+
+.calendar-popup {
+  position: absolute !important;
+  top: calc(100% + 5px);
+  left: 0;
+  z-index: 9999;
+  box-sizing: border-box;
+  min-width: 280px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #DCC9B3;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(37, 39, 31, 0.12);
+}
+.custom-date-picker {
+  position: relative;
+}
+.calendar-weekdays,
+.calendar-days {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  width: 100%;
+}
+
+/* BOOKING CONFIRMATION */
+
+.booking-confirmation {
+  padding: 45px 0 70px;
+  background: var(--color-bg);
+}
+
+.booking-confirmation-card {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 35px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: #FFFFFF;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.booking-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 17px;
+  border-radius: 50%;
+  background: #E5F0E6;
+  color: #397653;
+  font-size: 27px;
+  font-weight: 600;
+}
+
+.booking-confirmation-card h2 {
+  margin: 0 0 10px;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 25px;
+}
+
+.booking-confirmation-card > p {
+  color: var(--color-text-soft);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.booking-id {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 25px 0;
+  padding: 20px;
+  border: 1px dashed var(--color-primary);
+  border-radius: 10px;
+  background: var(--color-bg);
+}
+
+.booking-id span {
+  color: var(--color-text-soft);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.booking-id strong {
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 26px;
+  letter-spacing: 1px;
+}
+
+.booking-details {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.booking-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+}
+
+.booking-detail-row span {
+  color: var(--color-text-soft);
+}
+
+.booking-detail-row strong {
+  max-width: 60%;
+  color: var(--color-text);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.booking-instruction {
+  margin: 20px 0;
+  padding: 14px;
+  border-radius: 9px;
+  background: var(--color-bg);
+  color: var(--color-text-soft);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+  .booking-confirmation-card {
+    padding: 24px 18px;
+  }
+
+  .booking-id strong {
+    font-size: 22px;
+  }
+
+  .booking-detail-row {
+    gap: 10px;
+    font-size: 12px;
+  }
+}
+
+
+.calendar-weekdays {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.calendar-weekdays span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #766D63;
+}
+
+.calendar-days span,
+.calendar-days button {
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.calendar-days button {
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #25271F;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.calendar-days button:hover:not(:disabled) {
+  background: #E8E6E0;
+}
+
+.calendar-days button.today {
+  border: 1px solid #A45B3C;
+}
+
+.calendar-days button.selected {
+  background: #A45B3C;
+  color: #fff;
+}
+
+.calendar-days button:disabled {
+  color: #C5BDB3;
+  cursor: not-allowed;
+}
