@@ -92,11 +92,11 @@ export default function Contact() {
         {/* CONTACT INTRODUCTION */}
         <section className={styles.contactHero}>
           <div className="container">
-            <p className={styles.eyebrow}>WE'RE HERE TO HELP</p>
-            <h1>Let's Talk</h1>
+            <p className={styles.eyebrow}>WE&apos;RE HERE TO HELP</p>
+            <h1>Let&apos;s Talk</h1>
             <p>
               Have a question, need help with an order, or want to
-              partner with Cravora? We'd love to hear from you.
+              partner with Cravora? We&apos;d love to hear from you.
             </p>
           </div>
         </section>
