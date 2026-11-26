@@ -1,6 +1,7 @@
 
 import Image from "next/image";
 import styles from "./about.module.css";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export default function About() {
   return (
@@ -162,34 +163,7 @@ export default function About() {
       </main>
 
       {/* FOOTER */}
-      <footer className="site-footer">
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <a href="/" className="logo">cravora<span>.</span></a>
-            <p>
-              Good food. Better living. Creating experiences
-              that bring people together, one meal at a time.
-            </p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Explore</h4>
-            <a href="/dining">Dining</a>
-            <a href="/order">Order Online</a>
-          </div>
-
-          <div className="footer-column">
-            <h4>Information</h4>
-            <a href="/about">Our Story</a>
-            <a href="/contact">Contact</a>
-          </div>
-        </div>
-
-        <div className="container footer-bottom">
-          <p>© 2026 Cravora. All rights reserved.</p>
-          <p>Good Food. Great Moments.</p>
-        </div>
-      </footer>
+      <SiteFooter activePath="/about" />
     </>
   );
 }

@@ -44,6 +44,7 @@ export async function GET(request: NextRequest) {
       seatingPreference: reservation.seatingPreference,
       specialRequest: reservation.specialRequest,
       status: reservation.status,
+      cancellationReason: reservation.cancellationReason,
     }));
 
     return NextResponse.json({

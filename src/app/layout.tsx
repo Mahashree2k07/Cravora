@@ -1,7 +1,17 @@
-
 import type { Metadata } from "next";
 import "./globals.css";
 import "../styles/wireframe.css";
+import { PublicSettingsProvider } from "@/components/PublicSettingsProvider";
+import {
+  DEFAULT_PUBLIC_SETTINGS,
+  type PublicRestaurantSettings,
+} from "@/lib/public-settings";
+import {
+  getResolvedDiningDropdowns,
+  getRestaurantSettings,
+} from "@/lib/settings";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Cravora | Good Food. Great Moments.",
@@ -9,11 +19,38 @@ export const metadata: Metadata = {
     "Discover delicious food and enjoy a seamless ordering experience with Cravora.",
 };
 
-export default function RootLayout({
+async function loadInitialPublicSettings(): Promise<PublicRestaurantSettings> {
+  try {
+    const settings = await getRestaurantSettings();
+    const diningDropdowns = getResolvedDiningDropdowns(
+      settings.customerFilterConfig
+    );
+
+    return {
+      restaurantEmail: settings.restaurantEmail,
+      restaurantPhone: settings.restaurantPhone,
+      restaurantAddress: settings.restaurantAddress,
+      lunchStart: settings.lunchStart,
+      lunchEnd: settings.lunchEnd,
+      dinnerStart: settings.dinnerStart,
+      dinnerEnd: settings.dinnerEnd,
+      acceptOnlineOrders: settings.acceptOnlineOrders,
+      acceptDiningReservations: settings.acceptDiningReservations,
+      diningDurations: diningDropdowns.diningDurations,
+      seatingPreferences: diningDropdowns.seatingPreferences,
+    };
+  } catch {
+    return DEFAULT_PUBLIC_SETTINGS;
+  }
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialSettings = await loadInitialPublicSettings();
+
   return (
     <html lang="en">
       <head>
@@ -28,7 +65,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <PublicSettingsProvider initialSettings={initialSettings}>
+          {children}
+        </PublicSettingsProvider>
+      </body>
     </html>
   );
 }

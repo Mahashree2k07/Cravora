@@ -251,16 +251,26 @@
   min-width: 0;
 }
 
-/* Grey hover effect for dropdown options */
-.toolbar select option {
-  background: #fff;
-  color: #25271F;
+.toolbarDropdown {
+  width: 190px;
+  flex-shrink: 0;
 }
 
-.toolbar select option:hover,
-.toolbar select option:checked {
-  background: #EAE6DF;
-  color: #25271F;
+.toolbarDropdown > button {
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  background: #fff;
+}
+
+@media (max-width: 600px) {
+  .toolbar {
+    flex-direction: column;
+  }
+
+  .toolbarDropdown {
+    width: 100%;
+  }
 }
 .tableWrap {
   overflow-x: auto;
@@ -323,6 +333,26 @@
 .cancelled {
   background: #F8E7E4;
   color: #A13D35;
+}
+
+.cancelReasonText {
+  margin: 6px 0 0;
+  color: #8F332B;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: normal;
+  max-width: 240px;
+}
+
+.cancelReasonBox {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid #EBC4BF;
+  border-radius: 8px;
+  background: #FDF4F3;
+  color: #8F332B;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .viewButton {

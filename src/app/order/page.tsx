@@ -2,6 +2,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { SiteFooter } from "@/components/SiteFooter";
+import { usePublicSettings } from "@/components/PublicSettingsProvider";
 
 type Taxonomy = {
   slug: string;
@@ -28,6 +30,7 @@ type Taxonomies = {
   courses: Taxonomy[];
   cuisineRegions: Taxonomy[];
   moodTags: Taxonomy[];
+  spiceLevels?: Taxonomy[];
   dietaryTags: Taxonomy[];
   allergens: Taxonomy[];
 };
@@ -99,6 +102,7 @@ useEffect(() => {
   const [currency, setCurrency] = useState<"INR" | "USD">("INR");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [storageReady, setStorageReady] = useState(false);
+  const settings = usePublicSettings();
 
   // Load the menu from the database API.
   useEffect(() => {
@@ -242,6 +246,8 @@ useEffect(() => {
   }
 
   function changeQuantity(item: MenuItem, change: number) {
+    if (!settings.acceptOnlineOrders && change > 0) return;
+
     const price = getPrice(item);
 
     if (price === null || price === undefined) return;
@@ -409,9 +415,14 @@ useEffect(() => {
           </p>
 
           <div className="menu-item-dietary">
-            {item.dietaryCompatible.map((tag) => (
-              <span key={tag}>{displayName(tag)}</span>
-            ))}
+            {item.dietaryCompatible.map((tag) => {
+              const matched = taxonomies?.dietaryTags.find(
+                (t) => t.slug === tag
+              );
+              return (
+                <span key={tag}>{displayName(matched?.name ?? tag)}</span>
+              );
+            })}
           </div>
 
           <div className="menu-card-bottom-row">
@@ -429,6 +440,7 @@ useEffect(() => {
                   <button
                     type="button"
                     aria-label={`Remove one ${item.name}`}
+                    disabled={!settings.acceptOnlineOrders}
                     onClick={() => changeQuantity(item, -1)}
                   >
                     −
@@ -437,6 +449,7 @@ useEffect(() => {
                   <button
                     type="button"
                     aria-label={`Add one ${item.name}`}
+                    disabled={!settings.acceptOnlineOrders}
                     onClick={() => changeQuantity(item, 1)}
                   >
                     +
@@ -446,6 +459,7 @@ useEffect(() => {
                 <button
                   type="button"
                   className="add-to-cart-btn"
+                  disabled={!settings.acceptOnlineOrders}
                   onClick={() => changeQuantity(item, 1)}
                 >
                   + Add
@@ -521,7 +535,9 @@ return (
                     {renderFilter(
                       "spice",
                       "All Spice Levels",
-                      spiceOptions
+                      taxonomies.spiceLevels?.length
+                        ? taxonomies.spiceLevels
+                        : spiceOptions
                     )}
                     {renderFilter(
                       "mood",
@@ -598,6 +614,17 @@ return (
 
         <section className="menu-items-section">
           <div className="container">
+            {!settings.acceptOnlineOrders && (
+              <div className="service-paused-banner" role="status">
+                <strong>Online Ordering Temporarily Paused</strong>
+                <span>
+                  You can still browse our full menu. To place an order or
+                  inquire, call {settings.restaurantPhone} or visit{" "}
+                  {settings.restaurantAddress}.
+                </span>
+              </div>
+            )}
+
             <div className="menu-results-heading">
               <p>
                 {loading
@@ -661,48 +688,7 @@ return (
         </div>
       )}
 
-      <footer className="site-footer">
-        <div className="container">
-          <div className="footer-main">
-            <div className="footer-brand">
-              <a href="/" className="logo">
-                cravora<span>.</span>
-              </a>
-
-              <h2>
-                Good food.
-                <br />
-                Great moments.
-              </h2>
-
-              <p>
-                Discover delicious food, explore new flavours,
-                and find something worth coming back for.
-              </p>
-            </div>
-
-            <div className="footer-links">
-              <div className="footer-column">
-                <h3>EXPLORE</h3>
-                <a href="/dining">Dining</a>
-                <a href="/order">Order Online</a>
-                <a href="/about">Our Story</a>
-                <a href="/contact">Contact</a>
-              </div>
-
-              <div className="footer-column">
-                <h3>GET IN TOUCH</h3>
-                <a href="/contact">Contact Us →</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="footer-bottom">
-            <p>© 2026 Cravora. All rights reserved.</p>
-            <p>Made for the love of good food.</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter activePath="/order" />
     </>
   );
 }

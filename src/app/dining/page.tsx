@@ -3,23 +3,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { jsPDF } from "jspdf";
-const lunchTimes = [
-  ["12:00", "12:00 PM"],
-  ["12:30", "12:30 PM"],
-  ["13:00", "1:00 PM"],
-  ["13:30", "1:30 PM"],
-  ["14:00", "2:00 PM"],
-  ["14:30", "2:30 PM"],
-];
-
-const dinnerTimes = [
-  ["19:00", "7:00 PM"],
-  ["19:30", "7:30 PM"],
-  ["20:00", "8:00 PM"],
-  ["20:30", "8:30 PM"],
-  ["21:00", "9:00 PM"],
-  ["21:30", "9:30 PM"],
-];
+import { SiteFooter } from "@/components/SiteFooter";
+import { usePublicSettings } from "@/components/PublicSettingsProvider";
+import {
+  DEFAULT_DINING_DURATIONS,
+  DEFAULT_SEATING_PREFERENCES,
+  EMAIL_DOT_COM_REGEX,
+  PHONE_10_REGEX,
+  formatTime12h,
+  generateTimeSlots,
+  sanitizePhoneInput,
+} from "@/lib/public-settings";
 
 type DropdownOption = {
   value: string;
@@ -152,6 +146,7 @@ export default function DiningPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [booking, setBooking] = useState<Record<string, string> | null>(null);
+  const settings = usePublicSettings();
 
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -241,17 +236,24 @@ export default function DiningPage() {
     event.preventDefault();
     setError("");
 
+    if (!settings.acceptDiningReservations) {
+      setError(
+        "Dining reservations are currently paused. Please contact us directly."
+      );
+      return;
+    }
+
     if (!/^[A-Za-z ]{2,50}$/.test(name.trim())) {
       setError("Please enter your name using letters and spaces only.");
       return;
     }
 
-    if (!/^\d{10}$/.test(phone)) {
+    if (!PHONE_10_REGEX.test(phone)) {
       setError("Please enter exactly 10 digits for your mobile number.");
       return;
     }
 
-    if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.com$/.test(email)) {
+    if (!EMAIL_DOT_COM_REGEX.test(email.trim())) {
       setError("Please enter a valid email address ending in .com.");
       return;
     }
@@ -437,30 +439,37 @@ const downloadBookingConfirmation = () => {
 };
   
 
-  const durationOptions: DropdownOption[] = [
-    { value: "30 minutes", label: "30 minutes" },
-    { value: "45 minutes", label: "45 minutes" },
-    { value: "1 hour", label: "1 hour" },
-    { value: "1 hour 30 minutes", label: "1 hour 30 minutes" },
-    { value: "2 hours", label: "2 hours" },
-    { value: "More than 2 hours", label: "More than 2 hours" },
-  ];
+  const durationOptions: DropdownOption[] = (
+    settings.diningDurations?.length
+      ? settings.diningDurations
+      : DEFAULT_DINING_DURATIONS
+  ).map((option) => ({
+    value: option,
+    label: option,
+  }));
 
-  const seatingOptions: DropdownOption[] = [
-    { value: "Indoor seating", label: "Indoor seating" },
-    { value: "Outdoor seating", label: "Outdoor seating" },
-    { value: "No preference", label: "No preference" },
-  ];
+  const seatingOptions: DropdownOption[] = (
+    settings.seatingPreferences?.length
+      ? settings.seatingPreferences
+      : DEFAULT_SEATING_PREFERENCES
+  ).map((option) => ({
+    value: option,
+    label: option,
+  }));
 
   const timeOptions: DropdownOption[] = [
-    ...lunchTimes.map(([value, label]) => ({
-      value,
-      label: `Lunch – ${label}`,
-    })),
-    ...dinnerTimes.map(([value, label]) => ({
-      value,
-      label: `Dinner – ${label}`,
-    })),
+    ...generateTimeSlots(settings.lunchStart, settings.lunchEnd, 30).map(
+      (slot) => ({
+        value: slot.value,
+        label: `Lunch – ${slot.label}`,
+      })
+    ),
+    ...generateTimeSlots(settings.dinnerStart, settings.dinnerEnd, 30).map(
+      (slot) => ({
+        value: slot.value,
+        label: `Dinner – ${slot.label}`,
+      })
+    ),
   ];
 
   return (
@@ -500,8 +509,23 @@ const downloadBookingConfirmation = () => {
           <div className="reservation-layout">
             {/* RESERVATION FORM */}
             <div className="reservation-form-card">
+              {!settings.acceptDiningReservations && (
+                <div className="service-paused-banner" role="status">
+                  <strong>Table Reservations Temporarily Paused</strong>
+                  <span>
+                    We are not accepting online table bookings right now. Call{" "}
+                    {settings.restaurantPhone} or visit us at{" "}
+                    {settings.restaurantAddress}.
+                  </span>
+                </div>
+              )}
+
               <form id="reservation-form" onSubmit={handleSubmit}>
-                {/* NAME AND MOBILE */}
+                <fieldset
+                  disabled={!settings.acceptDiningReservations}
+                  className="reservation-fieldset"
+                >
+                  {/* NAME AND MOBILE */}
                 <div className="reservation-form-grid">
                   <div className="reservation-field">
                     <label htmlFor="guest-name">
@@ -541,11 +565,7 @@ const downloadBookingConfirmation = () => {
                       title="Please enter exactly 10 digits."
                       autoComplete="tel"
                       value={phone}
-                      onChange={(e) =>
-                        setPhone(
-                          e.target.value.replace(/\D/g, "").slice(0, 10)
-                        )
-                      }
+                      onChange={(e) => setPhone(sanitizePhoneInput(e.target.value))}
                       required
                     />
                   </div>
@@ -563,6 +583,8 @@ const downloadBookingConfirmation = () => {
                       id="email"
                       name="email"
                       placeholder="e.g., name@gmail.com"
+                      pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[cC][oO][mM]"
+                      title="Please enter a valid email address ending in .com."
                       maxLength={100}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -768,13 +790,14 @@ const downloadBookingConfirmation = () => {
                   </p>
                 )}
 
-                <button
-                  type="submit"
-                  className="btn btn-primary reservation-submit"
-                  disabled={loading}
-                >
-                  {loading ? "Confirming..." : "Confirm Reservation"}
-                </button>
+                  <button
+                    type="submit"
+                    className="btn btn-primary reservation-submit"
+                    disabled={loading || !settings.acceptDiningReservations}
+                  >
+                    {loading ? "Confirming..." : "Confirm Reservation"}
+                  </button>
+                </fieldset>
               </form>
             </div>
 
@@ -823,12 +846,18 @@ const downloadBookingConfirmation = () => {
                 <div className="dining-hours-grid">
                   <div className="dining-hour-item">
                     <span>Lunch</span>
-                    <strong>12:00 PM - 3:00 PM</strong>
+                    <strong>
+                      {formatTime12h(settings.lunchStart)} -{" "}
+                      {formatTime12h(settings.lunchEnd)}
+                    </strong>
                   </div>
 
                   <div className="dining-hour-item">
                     <span>Dinner</span>
-                    <strong>7:00 PM - 10:00 PM</strong>
+                    <strong>
+                      {formatTime12h(settings.dinnerStart)} -{" "}
+                      {formatTime12h(settings.dinnerEnd)}
+                    </strong>
                   </div>
                 </div>
 
@@ -943,37 +972,7 @@ const downloadBookingConfirmation = () => {
       )}
 
       {/* FOOTER */}
-      <footer className="site-footer">
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <a href="/" className="logo">
-              cravora<span>.</span>
-            </a>
-
-            <p>
-              Good food. Better living. Creating experiences
-              that bring people together, one meal at a time.
-            </p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Explore</h4>
-            <a href="/dining">Dining</a>
-            <a href="/order">Order Online</a>
-          </div>
-
-          <div className="footer-column">
-            <h4>Information</h4>
-            <a href="/about">Our Story</a>
-            <a href="/contact">Contact</a>
-          </div>
-        </div>
-
-        <div className="container footer-bottom">
-          <p>© 2026 Cravora. All rights reserved.</p>
-          <p>Good Food. Great Moments.</p>
-        </div>
-      </footer>
+      <SiteFooter activePath="/dining" />
     </>
   );
 }

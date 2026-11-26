@@ -3,6 +3,9 @@
 
 import { Fragment, useMemo, useState, type FormEvent } from "react";
 import styles from "./my-activity.module.css";
+import CustomDropdown from "@/components/CustomDropdown";
+import { SiteFooter } from "@/components/SiteFooter";
+import { EMAIL_DOT_COM_REGEX } from "@/lib/public-settings";
 
 type OrderItem = {
   id: string;
@@ -23,6 +26,7 @@ type Order = {
   total: number;
   currency: string;
   status: string;
+  cancellationReason?: string | null;
   items: OrderItem[];
 };
 
@@ -37,6 +41,7 @@ type Reservation = {
   seatingPreference: string;
   specialRequest: string | null;
   status: string;
+  cancellationReason?: string | null;
 };
 
 const formatDate = (value: string) =>
@@ -155,6 +160,13 @@ export default function MyActivityPage() {
   async function sendCode(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const trimmedEmail = email.trim().toLowerCase();
+    if (!EMAIL_DOT_COM_REGEX.test(trimmedEmail)) {
+      setMessage("Please enter a valid email address ending in .com.");
+      setMessageType("error");
+      return;
+    }
+
     setLoading(true);
     setMessage("");
 
@@ -162,7 +174,7 @@ export default function MyActivityPage() {
       const response = await fetch("/api/orders/send-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim().toLowerCase() }),
+        body: JSON.stringify({ email: trimmedEmail }),
       });
 
       const data = await response.json();
@@ -312,7 +324,9 @@ export default function MyActivityPage() {
                 <input
                   id="activity-email"
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder="Enter your email address (e.g., name@gmail.com)"
+                  pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[cC][oO][mM]"
+                  title="Please enter a valid email address ending in .com."
                   maxLength={255}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
@@ -424,19 +438,21 @@ export default function MyActivityPage() {
                       }}
                     />
 
-                    <select
-                      aria-label="Filter orders by status"
+                    <CustomDropdown
+                      className={styles.toolbarDropdown}
+                      ariaLabel="Filter orders by status"
                       value={statusFilter}
-                      onChange={(event) => {
-                        setStatusFilter(event.target.value);
+                      onChange={(value) => {
+                        setStatusFilter(value);
                         setPage(1);
                       }}
-                    >
-                      <option value="all">All Orders</option>
-                      <option value="completed">Completed</option>
-                      <option value="processing">Processing</option>
-                      <option value="cancelled">Cancelled</option>
-                    </select>
+                      options={[
+                        { value: "all", label: "All Orders" },
+                        { value: "completed", label: "Completed" },
+                        { value: "processing", label: "Processing" },
+                        { value: "cancelled", label: "Cancelled" },
+                      ]}
+                    />
                   </div>
 
                   {visibleOrders.length === 0 ? (
@@ -492,6 +508,12 @@ export default function MyActivityPage() {
                                   >
                                     {displayStatus(order.status)}
                                   </span>
+                                  {order.status.toLowerCase() === "cancelled" &&
+                                    order.cancellationReason && (
+                                      <p className={styles.cancelReasonText}>
+                                        Reason: {order.cancellationReason}
+                                      </p>
+                                    )}
                                 </td>
 
                                 <td>
@@ -551,6 +573,14 @@ export default function MyActivityPage() {
                                       Pickup: {formatDate(order.pickupDate)} at{" "}
                                       {formatTime(order.pickupTime)}
                                     </p>
+
+                                    {order.status.toLowerCase() === "cancelled" &&
+                                      order.cancellationReason && (
+                                        <div className={styles.cancelReasonBox}>
+                                          <strong>Cancellation Reason:</strong>{" "}
+                                          {order.cancellationReason}
+                                        </div>
+                                      )}
                                   </td>
                                 </tr>
                               )}
@@ -610,18 +640,18 @@ export default function MyActivityPage() {
                       }
                     />
 
-                    <select
-                      aria-label="Filter reservations by status"
+                    <CustomDropdown
+                      className={styles.toolbarDropdown}
+                      ariaLabel="Filter reservations by status"
                       value={reservationStatusFilter}
-                      onChange={(event) =>
-                        setReservationStatusFilter(event.target.value)
-                      }
-                    >
-                      <option value="all">All Reservations</option>
-                      <option value="confirmed">Confirmed</option>
-                      <option value="processing">Processing</option>
-                      <option value="cancelled">Cancelled</option>
-                    </select>
+                      onChange={setReservationStatusFilter}
+                      options={[
+                        { value: "all", label: "All Reservations" },
+                        { value: "confirmed", label: "Confirmed" },
+                        { value: "processing", label: "Processing" },
+                        { value: "cancelled", label: "Cancelled" },
+                      ]}
+                    />
                   </div>
 
                   {!reservationsLoaded ||
@@ -676,6 +706,13 @@ export default function MyActivityPage() {
                                 >
                                   {displayStatus(reservation.status)}
                                 </span>
+                                {reservation.status.toLowerCase() ===
+                                  "cancelled" &&
+                                  reservation.cancellationReason && (
+                                    <p className={styles.cancelReasonText}>
+                                      Reason: {reservation.cancellationReason}
+                                    </p>
+                                  )}
                               </td>
                             </tr>
                           ))}
@@ -700,40 +737,7 @@ export default function MyActivityPage() {
       </main>
 
       {/* Footer */}
-      <footer className="site-footer">
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <a href="/" className="logo">
-              cravora<span>.</span>
-            </a>
-
-            <p>
-              Good food. Better living. Creating experiences that bring people
-              together, one meal at a time.
-            </p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Explore</h4>
-            <a href="/dining">Dining</a>
-            <a href="/order">Order Online</a>
-            <a href="/my-activity" className="active" aria-current="page">
-              My Activity
-            </a>
-          </div>
-
-          <div className="footer-column">
-            <h4>Information</h4>
-            <a href="/about">Our Story</a>
-            <a href="/contact">Contact</a>
-          </div>
-        </div>
-
-        <div className="container footer-bottom">
-          <p>&copy; 2026 Cravora. All rights reserved.</p>
-          <p>Good Food. Great Moments.</p>
-        </div>
-      </footer>
+      <SiteFooter activePath="/my-activity" />
     </>
   );
 }

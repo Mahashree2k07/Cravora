@@ -2,14 +2,9 @@
 import { NextResponse } from "next/server";
 import { randomBytes, randomUUID } from "node:crypto";
 import { prisma } from "@/lib/prisma";
+import { EMAIL_DOT_COM_REGEX } from "@/lib/public-settings";
 
 export const dynamic = "force-dynamic";
-
-const allowedSubjects = [
-  "customer-support",
-  "restaurant-partnership",
-  "general-enquiry",
-];
 
 export async function POST(request: Request) {
   try {
@@ -56,17 +51,17 @@ export async function POST(request: Request) {
 
     if (
       cleanEmail.length > 255 ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)
+      !EMAIL_DOT_COM_REGEX.test(cleanEmail)
     ) {
       return NextResponse.json(
-        { error: "Please enter a valid email address." },
+        { error: "Please enter a valid email address ending in .com." },
         { status: 400 }
       );
     }
 
-    if (!allowedSubjects.includes(cleanSubject)) {
+    if (cleanSubject.length < 2 || cleanSubject.length > 50) {
       return NextResponse.json(
-        { error: "Please select a valid enquiry subject." },
+        { error: "Subject must be between 2 and 50 characters." },
         { status: 400 }
       );
     }

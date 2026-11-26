@@ -54,6 +54,7 @@ export async function GET(request: NextRequest) {
       total: Number(order.total),
       currency: order.currency,
       status: order.status,
+      cancellationReason: order.cancellationReason,
       items: order.items.map((item) => ({
         id: String(item.id),
         itemName: item.itemName,

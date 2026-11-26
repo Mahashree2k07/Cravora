@@ -2,11 +2,25 @@
 import { NextResponse } from "next/server";
 import { randomBytes } from "node:crypto";
 import { prisma } from "@/lib/prisma";
+import { getRestaurantSettings } from "@/lib/settings";
+import {
+  EMAIL_DOT_COM_REGEX,
+  formatTime12h,
+  isTimeWithinHours,
+} from "@/lib/public-settings";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
+    const settings = await getRestaurantSettings();
+    if (!settings.acceptDiningReservations) {
+      return NextResponse.json(
+        { error: "Dining reservations are currently paused. Please contact us directly." },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
 
     const {
@@ -58,9 +72,15 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!/^\d{2}:\d{2}$/.test(time)) {
+    if (!/^\d{2}:\d{2}$/.test(time) || !isTimeWithinHours(time, settings)) {
       return NextResponse.json(
-        { error: "Please select a valid reservation time." },
+        {
+          error: `Please select a reservation time within dining hours (${formatTime12h(
+            settings.lunchStart
+          )}–${formatTime12h(settings.lunchEnd)} or ${formatTime12h(
+            settings.dinnerStart
+          )}–${formatTime12h(settings.dinnerEnd)}).`,
+        },
         { status: 400 }
       );
     }
@@ -72,9 +92,9 @@ export async function POST(request: Request) {
       );
     }
 
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (email && !EMAIL_DOT_COM_REGEX.test(String(email).trim())) {
       return NextResponse.json(
-        { error: "Please enter a valid email address." },
+        { error: "Please enter a valid email address ending in .com." },
         { status: 400 }
       );
     }

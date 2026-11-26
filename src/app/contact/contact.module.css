@@ -42,7 +42,7 @@
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: 45px;
-  align-items: stretch;
+  align-items: start;
 }
 
 /* LEFT INFORMATION CARDS */
@@ -50,7 +50,6 @@
 .infoColumn {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 17px;
 }
 
@@ -77,6 +76,42 @@
   color: #766D63;
   font-size: 13px;
   line-height: 1.7;
+}
+
+.contactMetaList {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #DCC9B3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: #25271F;
+}
+
+.contactMetaRow {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.contactMetaRow span {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #766D63;
+}
+
+.contactMetaRow a,
+.contactMetaRow strong {
+  color: #25271F;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contactMetaRow a:hover {
+  color: #A45B3C;
 }
 
 /* RIGHT CONTACT FORM */
@@ -198,7 +233,7 @@
 
 /* FORM BUTTON */
 
-.contactForm button {
+.contactForm > button[type="submit"] {
   margin-top: 20px;
   border: none;
   cursor: pointer;
@@ -206,7 +241,7 @@
   font-size: 13px;
 }
 
-.contactForm button:disabled {
+.contactForm > button[type="submit"]:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }

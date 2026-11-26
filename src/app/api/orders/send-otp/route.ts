@@ -2,6 +2,7 @@
 import { randomInt } from "node:crypto";
 import { Resend } from "resend";
 import { prisma } from "@/lib/prisma";
+import { EMAIL_DOT_COM_REGEX } from "@/lib/public-settings";
 import {
   createOtp,
   cookieOptions,
@@ -16,9 +17,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const email = String(body.email ?? "").trim().toLowerCase();
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255) {
+    if (!EMAIL_DOT_COM_REGEX.test(email) || email.length > 255) {
       return NextResponse.json(
-        { message: "Please enter a valid email address." },
+        { message: "Please enter a valid email address ending in .com." },
         { status: 400 }
       );
     }

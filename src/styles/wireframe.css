@@ -640,9 +640,9 @@ p {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 65px;
-    padding-bottom: 55px;
+    grid-template-columns: 1.55fr 0.85fr 0.85fr 1.3fr;
+    gap: 44px;
+    padding-bottom: 50px;
 }
 
 .footer-brand p {
@@ -650,6 +650,12 @@ p {
     font-size: 14px;
     line-height: 1.8;
     margin-top: 15px;
+}
+
+.footer-hours {
+    margin-top: 10px !important;
+    font-size: 13px !important;
+    color: var(--color-text-soft);
 }
 
 .footer-column {
@@ -662,6 +668,33 @@ p {
 .footer-column h4 {
     font-size: 15px;
     margin-bottom: 8px;
+}
+
+.footer-contact-line {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-soft);
+    margin: 0;
+}
+
+.service-paused-banner {
+    background: #FDF2EC;
+    border: 1px solid #E5B9A6;
+    color: #80442F;
+    border-radius: 8px;
+    padding: 13px 16px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    overflow-wrap: anywhere;
+}
+
+.service-paused-banner strong {
+    font-size: 14px;
+    color: #5D2F1F;
 }
 
 .footer-column a {
@@ -705,7 +738,12 @@ p {
     }
 
     .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
         gap: 30px;
+    }
+
+    .footer-grid .footer-brand {
+        grid-column: 1 / -1;
     }
 
 }
@@ -5017,7 +5055,7 @@ p {
 }
 
 .menu-filter-section .multi-select-option:hover {
-    background: var(--color-bg);
+    background: #E5E1DA;
 }
 
 /* Keep checkbox size consistent */
@@ -7595,7 +7633,7 @@ html {
 }
 
 .time-option:hover {
-    background: #F0ECE5;
+    background: #E5E1DA;
 }
 
 .time-option.selected {
@@ -7960,7 +7998,7 @@ html {
 }
 
 .custom-select-option:hover {
-  background: #E8E6E0 !important;
+  background: #E5E1DA !important;
   color: #25271F !important;
 }
 
@@ -8172,4 +8210,42 @@ html {
 .calendar-days button:disabled {
   color: #C5BDB3;
   cursor: not-allowed;
+}
+
+/* DISABLED STATES WHEN ORDERING OR RESERVATIONS ARE PAUSED */
+.btn:disabled,
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.reservation-submit:disabled,
+.checkout-next-btn:disabled,
+.cart-checkout-btn:disabled,
+.add-to-cart-btn:disabled,
+.menu-item-actions button:disabled {
+  background-color: #D8D1C7 !important;
+  border-color: #CFC7BC !important;
+  color: #7D746A !important;
+  cursor: not-allowed !important;
+  opacity: 0.72 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.reservation-fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.reservation-fieldset:disabled {
+  opacity: 0.65;
+}
+
+.reservation-fieldset:disabled input,
+.reservation-fieldset:disabled textarea,
+.reservation-fieldset:disabled .custom-select-trigger {
+  background-color: #EFECE6 !important;
+  color: #7D746A !important;
+  cursor: not-allowed !important;
+  pointer-events: none;
 }

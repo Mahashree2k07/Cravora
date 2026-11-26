@@ -2,6 +2,16 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { SiteFooter } from "@/components/SiteFooter";
+import { usePublicSettings } from "@/components/PublicSettingsProvider";
+import {
+  EMAIL_DOT_COM_REGEX,
+  PHONE_10_REGEX,
+  formatTime12h,
+  generateTimeSlots,
+  isTimeWithinHours,
+  sanitizePhoneInput,
+} from "@/lib/public-settings";
 
 const CART_KEY = "cravora_wireframe_cart";
 const CURRENCY_KEY = "cravora_wireframe_currency";
@@ -23,6 +33,7 @@ export default function CheckoutPage() {
   const [success, setSuccess] = useState(false);
   const [orderId, setOrderId] = useState("");
   const [pickupDetails, setPickupDetails] = useState("");
+  const settings = usePublicSettings();
 
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
@@ -201,33 +212,20 @@ export default function CheckoutPage() {
     });
   }
 
-  // Lunch and dinner pickup slots
-  const pickupSlots = [
-    ...Array.from({ length: 12 }, (_, i) => {
-      const totalMinutes = 12 * 60 + i * 15;
-      const hours = Math.floor(totalMinutes / 60);
-      const minutes = totalMinutes % 60;
-
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
-    }),
-
-    ...Array.from({ length: 12 }, (_, i) => {
-      const totalMinutes = 19 * 60 + i * 15;
-      const hours = Math.floor(totalMinutes / 60);
-      const minutes = totalMinutes % 60;
-
-      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
-    }),
-  ];
+  // Lunch and dinner pickup slots driven by Settings operating hours
+  const lunchPickupSlots = generateTimeSlots(
+    settings.lunchStart,
+    settings.lunchEnd,
+    15
+  );
+  const dinnerPickupSlots = generateTimeSlots(
+    settings.dinnerStart,
+    settings.dinnerEnd,
+    15
+  );
 
   function validatePickupTime(time: string) {
-    const [hours, minutes] = time.split(":").map(Number);
-    const value = hours * 60 + minutes;
-
-    return (
-      (value >= 12 * 60 && value < 15 * 60) ||
-      (value >= 19 * 60 && value < 22 * 60)
-    );
+    return isTimeWithinHours(time, settings);
   }
 
   function formatPickupDate(date: string) {
@@ -245,18 +243,23 @@ export default function CheckoutPage() {
   function handleContinue() {
     setError("");
 
+    if (!settings.acceptOnlineOrders) {
+      setError("Online ordering is currently paused. Please check back later.");
+      return;
+    }
+
     if (customerName.trim().length < 2) {
       setError("Please enter your full name.");
       return;
     }
 
-    if (!/^\d{10}$/.test(customerPhone)) {
+    if (!PHONE_10_REGEX.test(customerPhone)) {
       setError("Please enter a valid 10-digit mobile number.");
       return;
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-      setError("Please enter a valid email address.");
+    if (!EMAIL_DOT_COM_REGEX.test(customerEmail.trim())) {
+      setError("Please enter a valid email address ending in .com.");
       return;
     }
 
@@ -367,8 +370,9 @@ export default function CheckoutPage() {
           </a>
 
           <nav className="main-nav">
+            <a href="/">Home</a>
             <a href="/dining">Dining</a>
-            <a href="/order">Order Online</a>
+            <a href="/order" className="active">Order Online</a>
             <a href="/my-activity">My Activity</a>
             <a href="/about">Our Story</a>
             <a href="/contact">Contact</a>
@@ -470,11 +474,12 @@ export default function CheckoutPage() {
                         placeholder="10-digit mobile number"
                         value={customerPhone}
                         onChange={(e) =>
-                          setCustomerPhone(
-                            e.target.value.replace(/\D/g, "").slice(0, 10)
-                          )
+                          setCustomerPhone(sanitizePhoneInput(e.target.value))
                         }
+                        minLength={10}
                         maxLength={10}
+                        pattern="[0-9]{10}"
+                        title="Please enter exactly 10 digits."
                         inputMode="numeric"
                         required
                       />
@@ -489,6 +494,8 @@ export default function CheckoutPage() {
                         type="email"
                         id="customer-email"
                         placeholder="name@gmail.com"
+                        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[cC][oO][mM]"
+                        title="Please enter a valid email address ending in .com."
                         value={customerEmail}
                         onChange={(e) => setCustomerEmail(e.target.value)}
                         required
@@ -503,9 +510,21 @@ export default function CheckoutPage() {
                   <div className="pickup-notice-compact">
                     <strong>Pickup Order</strong>
                     <span>
-                      Collect your order directly from our restaurant.
+                      Collect your order directly from {settings.restaurantAddress} (Lunch{" "}
+                      {formatTime12h(settings.lunchStart)}–{formatTime12h(settings.lunchEnd)}, Dinner{" "}
+                      {formatTime12h(settings.dinnerStart)}–{formatTime12h(settings.dinnerEnd)}).
                     </span>
                   </div>
+
+                  {!settings.acceptOnlineOrders && (
+                    <div className="service-paused-banner" role="status">
+                      <strong>Online Ordering Temporarily Paused</strong>
+                      <span>
+                        We are not accepting new online orders right now. Please call{" "}
+                        {settings.restaurantPhone} for assistance.
+                      </span>
+                    </div>
+                  )}
 
                   <div className="checkout-form-grid">
                     {/* PICKUP DATE */}
@@ -722,21 +741,21 @@ export default function CheckoutPage() {
                               LUNCH
                             </div>
 
-                            {pickupSlots.slice(0, 12).map((time) => (
+                            {lunchPickupSlots.map((slot) => (
                               <button
                                 type="button"
-                                key={time}
+                                key={slot.value}
                                 className={`time-option ${
-                                  pickupTime === time ? "selected" : ""
+                                  pickupTime === slot.value ? "selected" : ""
                                 }`}
                                 onClick={() => {
-                                  setPickupTime(time);
+                                  setPickupTime(slot.value);
                                   setTimeDropdownOpen(false);
                                 }}
                                 role="option"
-                                aria-selected={pickupTime === time}
+                                aria-selected={pickupTime === slot.value}
                               >
-                                {formatTimeLabel(time)}
+                                {slot.label}
                               </button>
                             ))}
 
@@ -744,21 +763,21 @@ export default function CheckoutPage() {
                               DINNER
                             </div>
 
-                            {pickupSlots.slice(12).map((time) => (
+                            {dinnerPickupSlots.map((slot) => (
                               <button
                                 type="button"
-                                key={time}
+                                key={slot.value}
                                 className={`time-option ${
-                                  pickupTime === time ? "selected" : ""
+                                  pickupTime === slot.value ? "selected" : ""
                                 }`}
                                 onClick={() => {
-                                  setPickupTime(time);
+                                  setPickupTime(slot.value);
                                   setTimeDropdownOpen(false);
                                 }}
                                 role="option"
-                                aria-selected={pickupTime === time}
+                                aria-selected={pickupTime === slot.value}
                               >
-                                {formatTimeLabel(time)}
+                                {slot.label}
                               </button>
                             ))}
                           </div>
@@ -776,6 +795,7 @@ export default function CheckoutPage() {
                   <button
                     type="submit"
                     className="btn btn-primary checkout-next-btn"
+                    disabled={!settings.acceptOnlineOrders}
                   >
                     Continue to Review →
                   </button>
@@ -860,7 +880,11 @@ export default function CheckoutPage() {
                     <button
                       type="submit"
                       className="btn btn-primary"
-                      disabled={submitting || cart.length === 0}
+                      disabled={
+                        submitting ||
+                        cart.length === 0 ||
+                        !settings.acceptOnlineOrders
+                      }
                     >
                       {submitting
                         ? "Placing Order..."
@@ -906,15 +930,7 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      <footer className="site-footer">
-        <div className="container">
-          <a href="/" className="logo">
-            cravora<span>.</span>
-          </a>
-
-          <p>Good food. Great moments.</p>
-        </div>
-      </footer>
+      <SiteFooter activePath="/order" />
     </>
   );
 }

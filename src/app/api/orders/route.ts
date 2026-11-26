@@ -2,11 +2,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { prisma } from "@/lib/prisma";
+import { getRestaurantSettings } from "@/lib/settings";
+import {
+  EMAIL_DOT_COM_REGEX,
+  PHONE_10_REGEX,
+  formatTime12h,
+  isTimeWithinHours,
+} from "@/lib/public-settings";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
   try {
+    const settings = await getRestaurantSettings();
+    if (!settings.acceptOnlineOrders) {
+      return NextResponse.json(
+        { message: "Online ordering is currently paused. Please check back later." },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
 
     const {
@@ -24,10 +39,10 @@ export async function POST(request: NextRequest) {
       typeof customerName !== "string" ||
       !customerName.trim() ||
       typeof customerPhone !== "string" ||
-      !customerPhone.trim()
+      !PHONE_10_REGEX.test(customerPhone.trim())
     ) {
       return NextResponse.json(
-        { message: "Please provide your name and phone number." },
+        { message: "Please provide your name and a 10-digit phone number." },
         { status: 400 }
       );
     }
@@ -37,12 +52,9 @@ export async function POST(request: NextRequest) {
         ? customerEmail.trim().toLowerCase()
         : "";
 
-    if (
-      email &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    ) {
+    if (email && !EMAIL_DOT_COM_REGEX.test(email)) {
       return NextResponse.json(
-        { message: "Please provide a valid email address." },
+        { message: "Please provide a valid email address ending in .com." },
         { status: 400 }
       );
     }
@@ -60,10 +72,17 @@ export async function POST(request: NextRequest) {
 
     if (
       typeof pickupTime !== "string" ||
-      !/^([01]\d|2[0-3]):[0-5]\d$/.test(pickupTime)
+      !/^([01]\d|2[0-3]):[0-5]\d$/.test(pickupTime) ||
+      !isTimeWithinHours(pickupTime, settings)
     ) {
       return NextResponse.json(
-        { message: "Please select a valid pickup time." },
+        {
+          message: `Please select a pickup time within service hours (${formatTime12h(
+            settings.lunchStart
+          )}–${formatTime12h(settings.lunchEnd)} or ${formatTime12h(
+            settings.dinnerStart
+          )}–${formatTime12h(settings.dinnerEnd)}).`,
+        },
         { status: 400 }
       );
     }
@@ -119,6 +138,7 @@ export async function POST(request: NextRequest) {
     const menuItems = await prisma.menuItem.findMany({
       where: {
         id: { in: Array.from(quantities.keys()) },
+        isAvailable: true,
       },
       select: {
         id: true,

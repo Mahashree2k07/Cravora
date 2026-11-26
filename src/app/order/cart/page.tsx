@@ -2,6 +2,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { SiteFooter } from "@/components/SiteFooter";
+import { usePublicSettings } from "@/components/PublicSettingsProvider";
 
 const CART_KEY = "cravora_wireframe_cart";
 const CURRENCY_KEY = "cravora_wireframe_currency";
@@ -26,6 +28,7 @@ export default function CartPage() {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [currency, setCurrency] = useState("INR");
   const [loaded, setLoaded] = useState(false);
+  const settings = usePublicSettings();
 
   const symbol = currency === "INR" ? "₹" : "$";
 
@@ -134,8 +137,9 @@ export default function CartPage() {
           </a>
 
           <nav className="main-nav">
+            <a href="/">Home</a>
             <a href="/dining">Dining</a>
-            <a href="/order">Order Online</a>
+            <a href="/order" className="active">Order Online</a>
             <a href="/my-activity">My Activity</a>
             <a href="/about">Our Story</a>
             <a href="/contact">Contact</a>
@@ -278,12 +282,36 @@ export default function CartPage() {
                     <strong>{formatPrice(subtotal)}</strong>
                   </div>
 
-                  <a
-                    href="/order/checkout"
-                    className="btn btn-primary cart-checkout-btn"
-                  >
-                    Proceed to Checkout
-                  </a>
+                  {!settings.acceptOnlineOrders && (
+                    <div
+                      className="service-paused-banner"
+                      role="status"
+                      style={{ marginTop: 14, marginBottom: 0 }}
+                    >
+                      <strong>Online Ordering Paused</strong>
+                      <span>
+                        Checkout is temporarily unavailable. Call{" "}
+                        {settings.restaurantPhone} for assistance.
+                      </span>
+                    </div>
+                  )}
+
+                  {settings.acceptOnlineOrders ? (
+                    <a
+                      href="/order/checkout"
+                      className="btn btn-primary cart-checkout-btn"
+                    >
+                      Proceed to Checkout
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      className="btn btn-primary cart-checkout-btn"
+                      disabled
+                    >
+                      Proceed to Checkout
+                    </button>
+                  )}
 
                   <a
                     href="/order"
@@ -300,14 +328,7 @@ export default function CartPage() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="container">
-          <a href="/" className="logo">
-            cravora<span>.</span>
-          </a>
-          <p>Good food. Great moments.</p>
-        </div>
-      </footer>
+      <SiteFooter activePath="/order" />
     </>
   );
 }

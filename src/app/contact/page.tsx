@@ -1,37 +1,69 @@
 
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./contact.module.css";
-import CustomDropdown from "@/components/CustomDropdown";
+import { SiteFooter } from "@/components/SiteFooter";
+import { usePublicSettings } from "@/components/PublicSettingsProvider";
+import { EMAIL_DOT_COM_REGEX, formatTime12h } from "@/lib/public-settings";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
+  const [enquiryNumber, setEnquiryNumber] = useState("");
+  const [toastMounted, setToastMounted] = useState(false);
+  const [toastVisible, setToastVisible] = useState(false);
   const [error, setError] = useState("");
   const [subject, setSubject] = useState("");
+  const settings = usePublicSettings();
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  function clearToastTimers() {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+  }
+
+  useEffect(() => {
+    return () => clearToastTimers();
+  }, []);
+
+  function showSuccessToast(id: string) {
+    clearToastTimers();
+    setEnquiryNumber(id);
+    setToastMounted(true);
+    setToastVisible(false);
+
+    timersRef.current.push(
+      setTimeout(() => setToastVisible(true), 20),
+      setTimeout(() => setToastVisible(false), 4000),
+      setTimeout(() => setToastMounted(false), 4400)
+    );
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!subject) {
-  setError("Please select a subject.");
-  setSuccess("");
-  return;
-}
+    if (!subject.trim()) {
+      setError("Please enter a subject.");
+      return;
+    }
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const cleanEmail = String(formData.get("email") || "").trim();
+
+    if (!EMAIL_DOT_COM_REGEX.test(cleanEmail)) {
+      setError("Please enter a valid email address ending in .com.");
+      return;
+    }
 
     const enquiryDetails = {
       name: String(formData.get("name") || "").trim(),
-      email: String(formData.get("email") || "").trim(),
-      subject: subject,
+      email: cleanEmail,
+      subject: subject.trim(),
       message: String(formData.get("message") || "").trim(),
       website: String(formData.get("website") || "").trim(),
     };
 
     setLoading(true);
-    setSuccess("");
     setError("");
 
     try {
@@ -47,9 +79,7 @@ export default function Contact() {
         throw new Error(result.error || "Unable to send your message.");
       }
 
-      setSuccess(
-        `Message sent successfully! Thank you for contacting Cravora. Enquiry ID: ${result.enquiry?.enquiry_number || "Received"}`
-      );
+      showSuccessToast(result.enquiry?.enquiry_number || "Received");
 
       form.reset();
       setSubject("");
@@ -132,6 +162,36 @@ export default function Contact() {
                   Cravora brings your food ordering experience together
                   in one place.
                 </p>
+
+                <div className={styles.contactMetaList}>
+                  <div className={styles.contactMetaRow}>
+                    <span>Address</span>
+                    <strong>{settings.restaurantAddress}</strong>
+                  </div>
+                  <div className={styles.contactMetaRow}>
+                    <span>Phone</span>
+                    <a
+                      href={`tel:${settings.restaurantPhone.replace(/\s+/g, "")}`}
+                    >
+                      {settings.restaurantPhone}
+                    </a>
+                  </div>
+                  <div className={styles.contactMetaRow}>
+                    <span>Email</span>
+                    <a href={`mailto:${settings.restaurantEmail}`}>
+                      {settings.restaurantEmail}
+                    </a>
+                  </div>
+                  <div className={styles.contactMetaRow}>
+                    <span>Hours</span>
+                    <strong>
+                      Lunch {formatTime12h(settings.lunchStart)} –{" "}
+                      {formatTime12h(settings.lunchEnd)} &middot; Dinner{" "}
+                      {formatTime12h(settings.dinnerStart)} –{" "}
+                      {formatTime12h(settings.dinnerEnd)}
+                    </strong>
+                  </div>
+                </div>
               </article>
             </div>
 
@@ -169,27 +229,27 @@ export default function Contact() {
                       id="email"
                       name="email"
                       placeholder="e.g., name@gmail.com"
+                      pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[cC][oO][mM]"
+                      title="Please enter a valid email address ending in .com."
                       required
                     />
                   </div>
 
                   <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                     <label htmlFor="subject">
-                      Subject
-                     <span className={styles.requiredStar}>*</span>
+                      Subject<span className={styles.requiredStar}>*</span>
                     </label>
-                    
-                    <CustomDropdown
-  value={subject}
-  onChange={setSubject}
-  placeholder="Select a subject"
-  ariaLabel="Select enquiry subject"
-  options={[
-    { value: "customer-support", label: "Customer Support" },
-    { value: "restaurant-partnership", label: "Restaurant Partnership" },
-    { value: "general-enquiry", label: "General Enquiry" },
-  ]}
-/>                      
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      placeholder="Enter your subject"
+                      minLength={2}
+                      maxLength={50}
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
+                      required
+                    />
                   </div>
 
                   <div className={`${styles.formGroup} ${styles.fullWidth}`}>
@@ -218,12 +278,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {success && (
-                  <div className={styles.successMessage} role="status">
-                    <strong>✓ {success}</strong>
-                  </div>
-                )}
-
                 {error && (
                   <div className={styles.errorMessage} role="alert">
                     {error}
@@ -243,37 +297,23 @@ export default function Contact() {
         </section>
       </main>
 
+      {toastMounted && (
+        <div
+          className={`contact-toast${toastVisible ? " show" : ""}`}
+          role="status"
+          aria-live="polite"
+        >
+          <span className="toast-icon">✓</span>
+          <div>
+            <strong>Message sent successfully!</strong>
+            <p>Thank you for contacting Cravora.</p>
+            <p>Enquiry ID: {enquiryNumber}</p>
+          </div>
+        </div>
+      )}
+
       {/* FOOTER */}
-      <footer className="site-footer">
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <a href="/" className="logo">
-              cravora<span>.</span>
-            </a>
-            <p>
-              Good food. Better living. Creating experiences
-              that bring people together, one meal at a time.
-            </p>
-          </div>
-
-          <div className="footer-column">
-            <h4>Explore</h4>
-            <a href="/dining">Dining</a>
-            <a href="/order">Order Online</a>
-          </div>
-
-          <div className="footer-column">
-            <h4>Information</h4>
-            <a href="/about">Our Story</a>
-            <a href="/contact">Contact</a>
-          </div>
-        </div>
-
-        <div className="container footer-bottom">
-          <p>© 2026 Cravora. All rights reserved.</p>
-          <p>Good Food. Great Moments.</p>
-        </div>
-      </footer>
+      <SiteFooter activePath="/contact" />
     </>
   );
 }

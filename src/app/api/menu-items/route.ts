@@ -1,20 +1,14 @@
-
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { getResolvedFilterConfig } from "@/lib/settings";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const [
-      menuItems,
-      courses,
-      cuisineRegions,
-      moodTags,
-      dietaryTags,
-      allergens,
-    ] = await Promise.all([
+    const [menuItems, filterConfig, allergens] = await Promise.all([
       prisma.menuItem.findMany({
+        where: { isAvailable: true },
         include: {
           course: { select: { name: true } },
           cuisineRegion: { select: { name: true } },
@@ -34,12 +28,9 @@ export async function GET() {
             },
           },
         },
-        orderBy: { name: "asc" },
+        orderBy: [{ displayOrder: "asc" }, { name: "asc" }],
       }),
-      prisma.course.findMany({ orderBy: { name: "asc" } }),
-      prisma.cuisineRegion.findMany({ orderBy: { name: "asc" } }),
-      prisma.moodTag.findMany({ orderBy: { name: "asc" } }),
-      prisma.dietaryTag.findMany({ orderBy: { name: "asc" } }),
+      getResolvedFilterConfig(),
       prisma.allergen.findMany({ orderBy: { name: "asc" } }),
     ]);
 
@@ -51,38 +42,38 @@ export async function GET() {
       cuisineRegion: item.cuisineRegion?.name ?? null,
       spiceLevel: item.spiceLevel,
       retailPriceInr:
-        item.retailPriceInr === null
-          ? null
-          : Number(item.retailPriceInr),
+        item.retailPriceInr === null ? null : Number(item.retailPriceInr),
       retailPriceUsd:
-        item.retailPriceUsd === null
-          ? null
-          : Number(item.retailPriceUsd),
+        item.retailPriceUsd === null ? null : Number(item.retailPriceUsd),
       moodTags: item.moods.map((entry) => entry.moodTag.name),
-      dietaryCompatible: item.dietary.map(
-        (entry) => entry.dietaryTag.name
-      ),
-      allergens: item.allergens.map(
-        (entry) => entry.allergen.name
-      ),
+      dietaryCompatible: item.dietary.map((entry) => entry.dietaryTag.name),
+      allergens: item.allergens.map((entry) => entry.allergen.name),
       isSignature: item.isSignature,
       imageUrl: item.imageUrl,
     }));
 
-    const toTaxonomy = (records: { name: string }[]) =>
-      records.map((record) => ({
-        slug: record.name,
-        name: record.name,
-      }));
+    const toEnabledTaxonomy = (
+      entries: { slug: string; label: string; enabled: boolean }[]
+    ) =>
+      entries
+        .filter((entry) => entry.enabled)
+        .map((entry) => ({
+          slug: entry.slug,
+          name: entry.label,
+        }));
 
     return NextResponse.json({
       items,
       taxonomies: {
-        courses: toTaxonomy(courses),
-        cuisineRegions: toTaxonomy(cuisineRegions),
-        moodTags: toTaxonomy(moodTags),
-        dietaryTags: toTaxonomy(dietaryTags),
-        allergens: toTaxonomy(allergens),
+        courses: toEnabledTaxonomy(filterConfig.courses),
+        cuisineRegions: toEnabledTaxonomy(filterConfig.cuisine),
+        moodTags: toEnabledTaxonomy(filterConfig.moods),
+        spiceLevels: toEnabledTaxonomy(filterConfig.spice),
+        dietaryTags: toEnabledTaxonomy(filterConfig.dietary),
+        allergens: allergens.map((record) => ({
+          slug: record.name,
+          name: record.name,
+        })),
       },
     });
   } catch (error) {

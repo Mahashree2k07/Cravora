@@ -51,7 +51,7 @@ VALUES
     249,
     NULL,
     TRUE,
-    'https://upload.wikimedia.org/wikipedia/commons/3/39/Paneer_Tikka_%282172840954%29.jpg'
+    '/images/menu/mango-habanero-paneer-tikka.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -83,7 +83,7 @@ VALUES
     199,
     NULL,
     FALSE,
-    'https://live.staticflickr.com/3370/3327792229_79a90f3d62_b.jpg'
+    '/images/menu/bangkok-bliss-chana.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -115,7 +115,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/6/66/Paneer_tikka_1.jpg'
+    '/images/menu/paneer-ke-angare-cups.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -147,7 +147,7 @@ VALUES
     169,
     NULL,
     FALSE,
-    'https://live.staticflickr.com/4087/5022272212_ac59b97559_b.jpg'
+    '/images/menu/aloo-croquets.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -177,7 +177,7 @@ VALUES
     239,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/a/aa/Tikka_array.jpg'
+    '/images/menu/pineapple-blaze-paneer-tikka.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -209,7 +209,7 @@ VALUES
     199,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/e/e2/Cutlets-_beetroot_cutlets.jpg'
+    '/images/menu/beetroot-croquets-with-aioli-chutney.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -241,7 +241,7 @@ VALUES
     159,
     NULL,
     FALSE,
-    'https://live.staticflickr.com/7319/11675890104_a212e5b34c_b.jpg'
+    '/images/menu/sprouted-chana-salad.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -274,7 +274,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/9/96/A_full_plate_chilli_paneer_in_Kolkata%2C_West_Bengal.jpg'
+    '/images/menu/bang-bang-paneer.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -306,7 +306,7 @@ VALUES
     149,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/9/97/Bhel_puri_chat%2C_photographed_in_West_Bengal%2C_India%2C_September_24%2C_2024.jpg'
+    '/images/menu/bhel-poori-mango-or-avocado.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -339,7 +339,7 @@ VALUES
     199,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/8/83/Kale_%26_ChickPea_Salad_%288425128977%29.jpg'
+    '/images/menu/kale-chaat.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -370,7 +370,7 @@ VALUES
     169,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/1/11/Urad_Dal_Kachori.jpg'
+    '/images/menu/banarasi-kachori.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -402,7 +402,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/a/ac/Veg_Seekh_kebab.jpg'
+    '/images/menu/rani-kebab-cylinders.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -432,7 +432,7 @@ VALUES
     169,
     NULL,
     FALSE,
-    'https://upload.wikimedia.org/wikipedia/commons/c/ce/Tikki-with-Chana_masala.JPG'
+    '/images/menu/chana-daal-aloo-tikki.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -464,7 +464,7 @@ VALUES
     189,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Cheese_corn_balls.JPG?width=1200'
+    '/images/menu/corn-bombs.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -495,7 +495,7 @@ VALUES
     199,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Gobi_65_%28cauliflower_fry%29.jpg?width=1200'
+    '/images/menu/gobhi-65.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -527,7 +527,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Walking_taco.jpg?width=1200'
+    '/images/menu/walking-tacos.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -558,7 +558,7 @@ VALUES
     179,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Bhakarwadi.JPG?width=1200'
+    '/images/menu/tikki-bhakarwadi-timble.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -588,7 +588,7 @@ VALUES
     199,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Gol_Gappa.jpg?width=1200'
+    '/images/menu/spicy-mango-caviar-gol-gappa-shots.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -621,7 +621,7 @@ VALUES
     179,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_samosa.jpg?width=1200'
+    '/images/menu/pizza-samosa.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -653,7 +653,7 @@ VALUES
     189,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Pinwheel_Samosa_with_Chutney.jpg?width=1200'
+    '/images/menu/saag-paneer-samosa.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -684,7 +684,7 @@ VALUES
     149,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Samosa_with_sweet_chutney.jpg?width=1200'
+    '/images/menu/khata-meetha-samosa.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -716,7 +716,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Laung_Churey_Kebab.jpg?width=1200'
+    '/images/menu/dil-ke-kebab.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -746,7 +746,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Bohra_Style_Keema_Samosa.jpg?width=1200'
+    '/images/menu/keema-samosa.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -778,7 +778,7 @@ VALUES
     299,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Malai_chicken_kabab.jpg?width=1200'
+    '/images/menu/chicken-malai-kebab.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -810,7 +810,7 @@ VALUES
     299,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken-Tikka.jpg?width=1200'
+    '/images/menu/black-pepper-chicken-tikka.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -841,7 +841,7 @@ VALUES
     289,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_Seekh_kabab_%26_Hariyali_Tikka.jpg?width=1200'
+    '/images/menu/hariyali-kebab-chicken-tikka.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -872,7 +872,7 @@ VALUES
     249,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_65.jpg?width=1200'
+    '/images/menu/chicken-65.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -904,7 +904,7 @@ VALUES
     269,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chili_chicken_%F0%9F%8D%97.jpg?width=1200'
+    '/images/menu/chili-chicken.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -935,7 +935,7 @@ VALUES
     279,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_Seekh_Kabab.jpg?width=1200'
+    '/images/menu/chicken-seekh-kebab.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -966,7 +966,7 @@ VALUES
     349,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Shami_kebab.jpg?width=1200'
+    '/images/menu/lamb-shami-kebab-with-avocado-chutney.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -997,7 +997,7 @@ VALUES
     349,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Seekh_Kebabs.jpg?width=1200'
+    '/images/menu/lamb-seekh-kebab.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1029,7 +1029,7 @@ VALUES
     449,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Grilled_lamb_chops.jpg?width=1200'
+    '/images/menu/baby-lamb-chops.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1061,7 +1061,7 @@ VALUES
     399,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Tandoori_Prawns_Jhinga.jpg?width=1200'
+    '/images/menu/prawn-angare-tandoori-shrimp.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1094,7 +1094,7 @@ VALUES
     379,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Prawn_65.JPG?width=1200'
+    '/images/menu/shrimp-til-tilka.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1126,7 +1126,7 @@ VALUES
     329,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Amritsari_Fried_Fish.JPG?width=1200'
+    '/images/menu/amritsari-fish-fry.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1159,7 +1159,7 @@ VALUES
     299,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Tikka_array.jpg?width=1200'
+    '/images/menu/pineapple-blaze-chicken-tikka.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1191,7 +1191,7 @@ VALUES
     69,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Garlic_naan.jpg?width=1200'
+    '/images/menu/garlic-naan.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1222,7 +1222,7 @@ VALUES
     59,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Butter_Naan.jpg?width=1200'
+    '/images/menu/butter-naan.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1253,7 +1253,7 @@ VALUES
     69,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Lachha-paratha.jpg?width=1200'
+    '/images/menu/laccha-paratha.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1284,7 +1284,7 @@ VALUES
     35,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_chapati.jpg?width=1200'
+    '/images/menu/chapatti.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1317,7 +1317,7 @@ VALUES
     119,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Gulab_jamuns.jpg?width=1200'
+    '/images/menu/gulab-jamun.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1349,7 +1349,7 @@ VALUES
     149,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Rasmalai.jpg?width=1200'
+    '/images/menu/rasmalai.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1381,7 +1381,7 @@ VALUES
     169,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Shahi_Gulab_Jamun.jpg?width=1200'
+    '/images/menu/shahi-jamun.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1413,7 +1413,7 @@ VALUES
     119,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Jalebi.jpg?width=1200'
+    '/images/menu/jalebi.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1446,7 +1446,7 @@ VALUES
     149,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Kulfi_by_pradeep_chamaria.jpg?width=1200'
+    '/images/menu/kulfi-mango-or-pistachio.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1478,7 +1478,7 @@ VALUES
     199,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chocolate_mousse_dessert.jpg?width=1200'
+    '/images/menu/mousse-rasmalai-mango-tiramisu.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1510,7 +1510,7 @@ VALUES
     219,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Creme_Brul%C3%A9e.jpg?width=1200'
+    '/images/menu/br-l-chai-mango-matcha.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1542,7 +1542,7 @@ VALUES
     139,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Phirni.jpg?width=1200'
+    '/images/menu/coconut-phirni.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1574,7 +1574,7 @@ VALUES
     179,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Malpua.jpg?width=1200'
+    '/images/menu/malpua-rabri.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1605,7 +1605,7 @@ VALUES
     199,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Falooda.jpg?width=1200'
+    '/images/menu/falooda-rabri.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1636,7 +1636,7 @@ VALUES
     149,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Party_-_fruit_skewers_%283863174408%29.jpg?width=1200'
+    '/images/menu/fruit-skewers.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1729,7 +1729,7 @@ VALUES
     219,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/1_Cannoli.jpg?width=1200'
+    '/images/menu/canoli-ras-malai-masala-tea-thandai-chocolate-mousse.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1760,7 +1760,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Fruit_and_mango_Mousse_tart.jpg?width=1200'
+    '/images/menu/tartelettes-mango-coconut-passion-fruit-raspberry.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1793,7 +1793,7 @@ VALUES
     149,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Banana_Fritters.jpg?width=1200'
+    '/images/menu/nutty-plantain.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1824,7 +1824,7 @@ VALUES
     279,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/MalaiKofta.jpg?width=1200'
+    '/images/menu/malai-kofta.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1919,7 +1919,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Aloo_Palak_(Spinach_with_Potatoes).JPG?width=1200'
+    '/images/menu/palak-aloo.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1953,7 +1953,7 @@ VALUES
     239,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Cauliflower_Potatoes_Curry.JPG?width=1200'
+    '/images/menu/aloo-gobhi-bhuni-gobhi.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -1986,7 +1986,7 @@ VALUES
     249,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Baigan_ka_Bharta.jpg?width=1200'
+    '/images/menu/baingan-bharta-baigare-baingan.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2019,7 +2019,7 @@ VALUES
     249,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Bhindi_Masala.jpg?width=1200'
+    '/images/menu/tawa-bhindi-masala.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2084,7 +2084,7 @@ VALUES
     269,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Veg_Jalfrezi.jpg?width=1200'
+    '/images/menu/veg-jalfrezi.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2116,7 +2116,7 @@ VALUES
     279,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Sarson-Ka-Saag.jpg?width=1200'
+    '/images/menu/sarson-ka-saag.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2148,7 +2148,7 @@ VALUES
     269,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Raw%20banana%20kofta%20curry%20-%20kachakola%20kofta%20curry.jpg?width=1200'
+    '/images/menu/raw-banana-kofta.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2212,7 +2212,7 @@ VALUES
     299,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Lotus_stem_curry.JPG?width=1200'
+    '/images/menu/nadru-curry.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2277,7 +2277,7 @@ VALUES
     249,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Basket_chaat.png?width=1200'
+    '/images/menu/tawa-tokri-chana.png'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2341,7 +2341,7 @@ VALUES
     299,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Shahi_paneer.jpg?width=1200'
+    '/images/menu/shahi-paneer.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2435,7 +2435,7 @@ VALUES
     299,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Paneer_makhani_curry.jpg?width=1200'
+    '/images/menu/paneer-makhani.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2467,7 +2467,7 @@ VALUES
     279,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Palak_Paneer.JPG?width=1200'
+    '/images/menu/palak-paneer.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2499,7 +2499,7 @@ VALUES
     269,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Dal-Makhani.jpg?width=1200'
+    '/images/menu/dal-bukhara-dal-makhani.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2531,7 +2531,7 @@ VALUES
     219,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Dal-_tadka.JPG?width=1200'
+    '/images/menu/dal-tadka.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2563,7 +2563,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chana_Dal_Curry.jpg?width=1200'
+    '/images/menu/ma-chana-dal.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2660,7 +2660,7 @@ VALUES
     229,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chana-masala.jpg?width=1200'
+    '/images/menu/chana-masala.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2726,7 +2726,7 @@ VALUES
     369,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_butter_masala.jpg?width=1200'
+    '/images/menu/butter-chicken.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2758,7 +2758,7 @@ VALUES
     379,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_Tikka_Masala.jpeg?width=1200'
+    '/images/menu/chicken-tikka-masala.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2790,7 +2790,7 @@ VALUES
     359,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Bhuna_chicken.JPG?width=1200'
+    '/images/menu/bhuna-chicken.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -2917,7 +2917,7 @@ VALUES
     449,
     NULL,
     TRUE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Rogan_Josh.JPG?width=1200'
+    '/images/menu/lamb-rogan-josh.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3013,7 +3013,7 @@ VALUES
     399,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Keema_Matar_(a_dish_from_India).jpg?width=1200'
+    '/images/menu/keema-matar.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3045,7 +3045,7 @@ VALUES
     449,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Mutton_curry.jpg?width=1200'
+    '/images/menu/goat-curry.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3141,7 +3141,7 @@ VALUES
     429,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Goan_prawn_curry.jpg?width=1200'
+    '/images/menu/goan-shrimp-curry.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3206,7 +3206,7 @@ VALUES
     369,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/South_Indian_Fish_Curry_with_Steamed_Rice-Chennai-TamilNadu-DSC0001.jpg?width=1200'
+    '/images/menu/fish-curry.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3239,7 +3239,7 @@ VALUES
     369,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_Chettinad.jpg?width=1200'
+    '/images/menu/chettinad-chicken.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3270,7 +3270,7 @@ VALUES
     379,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Chicken_ghee_roast.jpg?width=1200'
+    '/images/menu/chicken-ghee-roast.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3302,7 +3302,7 @@ VALUES
     349,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/Bang_bang_chicken_-_BBC_Food.jpg?width=1200'
+    '/images/menu/bang-bang-chicken.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3432,7 +3432,7 @@ Dryfruit Dudhi Halwa or Shrikhand',
     349,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/The_Gujarati_Thali.jpg?width=1200'
+    '/images/menu/gujarati-menu.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
@@ -3474,7 +3474,7 @@ Kheer',
     349,
     NULL,
     FALSE,
-    'https://commons.wikimedia.org/wiki/Special:FilePath/North_Indian_Lunch_Thali.jpg?width=1200'
+    '/images/menu/north-indian-lunch-menu.jpg'
 )
 ON CONFLICT (id) DO UPDATE SET
     name = EXCLUDED.name,
